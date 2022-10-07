@@ -1,5 +1,4 @@
 import express from "express";
-import mongoose from "mongoose";
 import connectDB from "./db/connect.js";
 import dotenv from "dotenv";
 
@@ -15,18 +14,20 @@ import notFoundMiddleware from "./middleware/not-found.js";
 //routers
 import articlesRouter from "./routes/articlesRoutes.js";
 import authRouter from "./routes/authRoutes.js";
+import errorHandlerMiddleware from "./middleware/error-handler.js";
 
 const app = express();
 dotenv.config();
 app.use(express.json());
 
-// heroku will add this env var; otherwise we use "dev"
+// heroku will add NODE_ENV var
+// otherwise in dev we use morgan to log http requests to console
 if (process.env.NODE_ENV !== "production") {
   app.use(morgan("dev"));
 }
 const PORT = process.env.PORT || 5000;
-// routes
 
+// routes
 app.get("/", (req, res) => {
   res.json({ msg: "Welcome!" });
 });
@@ -37,6 +38,7 @@ app.use("/api/v1/articles", articlesRouter);
 app.use("/api/v1/auth", authRouter);
 
 app.use(notFoundMiddleware);
+app.use(errorHandlerMiddleware);
 
 const start = async () => {
   try {
