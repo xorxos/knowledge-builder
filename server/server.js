@@ -6,22 +6,24 @@ import dotenv from "dotenv";
 // allows us to remove try catch in most cases for async func
 import "express-async-errors";
 
-// http logger middleware
+// http logger
 import morgan from "morgan";
+
+//middleware
+import notFoundMiddleware from "./middleware/not-found.js";
 
 //routers
 import articlesRouter from "./routes/articlesRoutes.js";
 import authRouter from "./routes/authRoutes.js";
 
-// heroku will add this env var; otherwise we use "dev"
-if (process.env.NODE_ENV !== "production") {
-    app.use(morgan("dev"));
-}
-
 const app = express();
 dotenv.config();
 app.use(express.json());
 
+// heroku will add this env var; otherwise we use "dev"
+if (process.env.NODE_ENV !== "production") {
+  app.use(morgan("dev"));
+}
 const PORT = process.env.PORT || 5000;
 // routes
 
@@ -33,6 +35,8 @@ app.get("/api/v1", (req, res) => {
 });
 app.use("/api/v1/articles", articlesRouter);
 app.use("/api/v1/auth", authRouter);
+
+app.use(notFoundMiddleware);
 
 const start = async () => {
   try {
