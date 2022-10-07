@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-export const ArticleModule = new mongoose.Schema({
+const ArticleModule = new mongoose.Schema({
   moduleType: {
     type: String,
     enum: [
