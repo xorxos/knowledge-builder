@@ -23,7 +23,7 @@ const Wrapper = styled.main`
         color: var(--primary-500);
         text-decoration: underline;
         text-transform: capitalize;
-        font-size: 1.4rem;
+        font-size: 1.2rem;
     }
 `
 
