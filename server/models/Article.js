@@ -12,7 +12,11 @@ const ArticleSchema = new mongoose.Schema({
     enum: ["pending, published, flagged"],
     default: "pending",
   },
-  categories: [String],
+  category: {
+    type: String,
+    maxlength: 50,
+  },
+  tags: [String],
   createdBy: {
     type: mongoose.Types.ObjectId,
     ref: "User",
