@@ -4,7 +4,8 @@ import connectDB from "./db/connect.js";
 import dotenv from "dotenv";
 
 //routers
-import articlesRouter from './routes/articlesRoutes.js'
+import articlesRouter from "./routes/articlesRoutes.js";
+import authRouter from "./routes/authRoutes.js";
 
 const app = express();
 dotenv.config();
@@ -19,7 +20,8 @@ app.get("/", (req, res) => {
 app.get("/api/v1", (req, res) => {
   res.json({ msg: "API" });
 });
-app.use("/api/v1/articles", articlesRouter)
+app.use("/api/v1/articles", articlesRouter);
+app.use("/api/v1/auth", authRouter);
 
 const start = async () => {
   try {
