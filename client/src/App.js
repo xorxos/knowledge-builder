@@ -1,6 +1,15 @@
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import {Error, Landing, Register} from './pages';
+
 function App() {
   return (
-    <h1>Knowledge Builder</h1>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/landing' element={<Landing />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='*' element={<Error />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
