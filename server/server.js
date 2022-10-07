@@ -3,6 +3,9 @@ import mongoose from "mongoose";
 import connectDB from "./db/connect.js";
 import dotenv from "dotenv";
 
+//routers
+import articlesRouter from './routes/articlesRoutes.js'
+
 const app = express();
 dotenv.config();
 app.use(express.json());
@@ -16,6 +19,7 @@ app.get("/", (req, res) => {
 app.get("/api/v1", (req, res) => {
   res.json({ msg: "API" });
 });
+app.use("/api/v1/articles", articlesRouter)
 
 const start = async () => {
   try {
