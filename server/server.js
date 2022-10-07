@@ -3,9 +3,20 @@ import mongoose from "mongoose";
 import connectDB from "./db/connect.js";
 import dotenv from "dotenv";
 
+// allows us to remove try catch in most cases for async func
+import "express-async-errors";
+
+// http logger middleware
+import morgan from "morgan";
+
 //routers
 import articlesRouter from "./routes/articlesRoutes.js";
 import authRouter from "./routes/authRoutes.js";
+
+// heroku will add this env var; otherwise we use "dev"
+if (process.env.NODE_ENV !== "production") {
+    app.use(morgan("dev"));
+}
 
 const app = express();
 dotenv.config();
