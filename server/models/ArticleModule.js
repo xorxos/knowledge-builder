@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const ArticleModule = new mongoose.Schema({
+const ArticleModuleSchema = new mongoose.Schema({
   moduleType: {
     type: String,
     enum: [
@@ -54,4 +54,4 @@ const ArticleModule = new mongoose.Schema({
   },
 }, {timestamps: true});
 
-export default mongoose.model("Article Module", ArticleModule);
+export default mongoose.model("Article Module", ArticleModuleSchema);
