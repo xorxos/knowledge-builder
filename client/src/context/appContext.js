@@ -91,7 +91,7 @@ const AppProvider = ({ children }) => {
     dispatch({ type: REGISTER_USER_BEGIN });
 
     try {
-      const { data } = await axios.post("/auth/register", currentUser);
+      const { data } = await axios.post("/api/v1/auth/register", currentUser);
       const { user, token } = data;
 
       dispatch({ type: REGISTER_USER_SUCCESS, payload: { user, token } });
@@ -107,7 +107,7 @@ const AppProvider = ({ children }) => {
     dispatch({ type: LOGIN_USER_BEGIN });
 
     try {
-      const { data } = await axios.post("/auth/login", currentUser);
+      const { data } = await axios.post("/api/v1/auth/login", currentUser);
       const { user, token } = data;
 
       dispatch({ type: LOGIN_USER_SUCCESS, payload: { user, token } });

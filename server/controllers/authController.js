@@ -42,15 +42,24 @@ const register = async (req, res) => {
   });
 };
 
-const updateUser = (req, res) => {
-  const { firstName, lastName, email } = req.body;
-  
+const updateUser = async (req, res) => {
+  const { email, firstName, lastName } = req.body;
+
   if (!email || !firstName || !lastName) {
-    throw new BadRequestError("Please provide all values")
+    throw new BadRequestError("Please provide all values");
   }
 
-  console.log(req.user);
-  const user = User.findOne({email})
+  const user = await User.findOne({ _id: req.user.userId });
+
+  user.email = email;
+  user.firstName = firstName;
+  user.lastName = lastName;
+
+  await user.save();
+
+  const token = user.createJWT();
+
+  res.status(StatusCodes.OK).json({ user, token });
 };
 
 export { login, register, updateUser };

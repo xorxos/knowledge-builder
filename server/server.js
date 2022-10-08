@@ -35,8 +35,8 @@ app.get("/", (req, res) => {
 app.get("/api/v1", (req, res) => {
   res.json({ msg: "API" });
 });
-app.use("/api/v1/articles", articlesRouter);
-app.use("/api/v1/auth", authenticateUser, authRouter);
+app.use("/api/v1/articles", authenticateUser, articlesRouter);
+app.use("/api/v1/auth", authRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
