@@ -10,6 +10,7 @@ import morgan from "morgan";
 
 //middleware
 import notFoundMiddleware from "./middleware/not-found.js";
+import authenticateUser from './middleware/auth.js'
 
 //routers
 import articlesRouter from "./routes/articlesRoutes.js";
@@ -35,7 +36,7 @@ app.get("/api/v1", (req, res) => {
   res.json({ msg: "API" });
 });
 app.use("/api/v1/articles", articlesRouter);
-app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/auth", authenticateUser, authRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);

@@ -43,7 +43,14 @@ const register = async (req, res) => {
 };
 
 const updateUser = (req, res) => {
-  res.status(StatusCodes.OK).json({ msg: "updateUser" });
+  const { firstName, lastName, email } = req.body;
+  
+  if (!email || !firstName || !lastName) {
+    throw new BadRequestError("Please provide all values")
+  }
+
+  console.log(req.user);
+  const user = User.findOne({email})
 };
 
 export { login, register, updateUser };
