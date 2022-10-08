@@ -1,7 +1,7 @@
 import Wrapper from "../wrappers/RegisterPage";
 import { useState, useEffect } from "react";
-import { Logo, FormRow } from "../components";
-import { useAppContext } from "../context/appContext";
+import { Logo, FormRow, Alert } from "../components";
+import { useAppContext, useScrollToAlert } from "../context/appContext";
 import { useNavigate } from "react-router-dom";
 
 const initialState = {
@@ -22,12 +22,50 @@ const Register = () => {
     useAppContext();
 
   const toggleMember = () => {
-    setValues({ ...values, isMember: !values.isMember });
+    if (!values.isMember) {
+      setValues({
+        ...values,
+        isMember: !values.isMember,
+        email: "parkertleavitt@gmail.com",
+        password: "secret",
+      });
+      return;
+    }
+    setValues({
+      ...values,
+      isMember: !values.isMember,
+      email: "",
+      password: "",
+    });
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log("form submitted");
+
+    const { firstName, lastName, email, password, confirmPassword, isMember } =
+      values;
+
+    if (
+      !email ||
+      !password ||
+      (!isMember && (!firstName || !lastName || !confirmPassword))
+    ) {
+      displayAlert();
+      return;
+    }
+
+    if (!isMember && password !== confirmPassword) {
+      displayAlert("Passwords do not match!");
+      return;
+    }
+
+    const currentUser = { firstName, lastName, email, password };
+
+    if (isMember) {
+      loginUser(currentUser);
+    } else {
+      registerUser(currentUser);
+    }
   };
 
   const handleChange = (e) => {
@@ -35,18 +73,21 @@ const Register = () => {
   };
 
   useEffect(() => {
-    // if (user) {
-    //   setTimeout(() => {
-    //     navigate("/");
-    //   }, 3000);
-    // }
+    if (user) {
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
+    }
   }, [user, navigate]);
+
+  useScrollToAlert();
 
   return (
     <Wrapper className="full-page">
       <form className="form" onSubmit={onSubmit}>
         <Logo />
         <h3>{values.isMember ? "Login" : "Register"}</h3>
+        {showAlert && <Alert />}
         {!values.isMember && (
           <FormRow
             type="text"
