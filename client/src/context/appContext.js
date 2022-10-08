@@ -12,6 +12,9 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
   LOGOUT_USER,
+  EDIT_USER_BEGIN,
+  EDIT_USER_SUCCESS,
+  EDIT_USER_ERROR,
 } from "./actions";
 
 const token = localStorage.getItem("token");
@@ -119,6 +122,16 @@ const AppProvider = ({ children }) => {
     clearAlert();
   };
 
+  const editUser = async (currentUser) => {
+    dispatch({type: EDIT_USER_BEGIN})
+    console.log(currentUser)
+    try {
+      //const {data} = await authFetch.post(`/auth/updateUser/${currentUser._id}`)
+    } catch (error) {
+      
+    }
+  }
+
   const logoutUser = () => {
     removeUserFromLocalStorage();
     dispatch({ type: LOGOUT_USER });
@@ -133,6 +146,7 @@ const AppProvider = ({ children }) => {
         registerUser,
         loginUser,
         logoutUser,
+        editUser,
       }}
     >
       {children}

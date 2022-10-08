@@ -10,6 +10,9 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
   LOGOUT_USER,
+  EDIT_USER_BEGIN,
+  EDIT_USER_SUCCESS,
+  EDIT_USER_ERROR,
 } from "./actions";
 
 const reducer = (state, action) => {
