@@ -11,7 +11,7 @@ import {
   LOGIN_USER_BEGIN,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
-  LOGOUT_USER
+  LOGOUT_USER,
 } from "./actions";
 
 const token = localStorage.getItem("token");
@@ -32,6 +32,33 @@ const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  // axios setup
+  const authFetch = axios.create({
+    baseURL: "/api/v1",
+  });
+
+  authFetch.interceptors.request.use(
+    (config) => {
+      config.headers.common["Authorization"] = `Bearer ${state.token}`;
+      return config;
+    },
+    (error) => {
+      return Promise.reject(error);
+    }
+  );
+
+  authFetch.interceptors.response.use(
+    (response) => {
+      return response;
+    },
+    (error) => {
+      if (error.response.status === 401) {
+        logoutUser();
+      }
+      return Promise.reject(error);
+    }
+  );
 
   const displayAlert = (customMessage) => {
     if (customMessage) {
@@ -64,12 +91,12 @@ const AppProvider = ({ children }) => {
     dispatch({ type: REGISTER_USER_BEGIN });
 
     try {
-      const { data } = await axios.post("/api/v1/auth/register", currentUser);
+      const { data } = await axios.post("/auth/register", currentUser);
       const { user, token } = data;
 
       dispatch({ type: REGISTER_USER_SUCCESS, payload: { user, token } });
 
-      addUserToLocalStorage({user, token});
+      addUserToLocalStorage({ user, token });
     } catch (error) {
       dispatch({ type: REGISTER_USER_ERROR, msg: error.response.data.msg });
     }
@@ -80,12 +107,12 @@ const AppProvider = ({ children }) => {
     dispatch({ type: LOGIN_USER_BEGIN });
 
     try {
-      const { data } = await axios.post("/api/v1/auth/login", currentUser);
+      const { data } = await axios.post("/auth/login", currentUser);
       const { user, token } = data;
 
       dispatch({ type: LOGIN_USER_SUCCESS, payload: { user, token } });
 
-      addUserToLocalStorage({user, token});
+      addUserToLocalStorage({ user, token });
     } catch (error) {
       dispatch({ type: LOGIN_USER_ERROR, msg: error.response.data.msg });
     }
@@ -94,8 +121,8 @@ const AppProvider = ({ children }) => {
 
   const logoutUser = () => {
     removeUserFromLocalStorage();
-    dispatch({type: LOGOUT_USER})
-  }
+    dispatch({ type: LOGOUT_USER });
+  };
 
   return (
     <AppContext.Provider
@@ -105,7 +132,7 @@ const AppProvider = ({ children }) => {
         clearAlert,
         registerUser,
         loginUser,
-        logoutUser
+        logoutUser,
       }}
     >
       {children}
