@@ -10,9 +10,10 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
   LOGOUT_USER,
-  EDIT_USER_BEGIN,
-  EDIT_USER_SUCCESS,
-  EDIT_USER_ERROR,
+  UPDATE_USER_BEGIN,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_ERROR,
+  TOGGLE_SIDEBAR,
 } from "./actions";
 
 const reducer = (state, action) => {
@@ -48,7 +49,7 @@ const reducer = (state, action) => {
     case REGISTER_USER_SUCCESS:
       return {
         ...state,
-        isLoaing: false,
+        isLoading: false,
         user: action.payload.user,
         token: action.payload.token,
         showAlert: true,
@@ -71,7 +72,7 @@ const reducer = (state, action) => {
     case LOGIN_USER_SUCCESS:
       return {
         ...state,
-        isLoaing: false,
+        isLoading: false,
         user: action.payload.user,
         token: action.payload.token,
         showAlert: true,
@@ -88,12 +89,42 @@ const reducer = (state, action) => {
         alertText: action.payload.msg,
       };
 
+    case UPDATE_USER_BEGIN:
+      return { ...state, isLoading: true };
+
+    case UPDATE_USER_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        token: action.payload.token,
+        user: action.payload.user,
+        showAlert: true,
+        alertType: "success",
+        alertText: "User Profile Updated!",
+      };
+
+    case UPDATE_USER_ERROR:
+      return {
+        ...state,
+        isLoading: false,
+        showAlert: true,
+        alertType: "danger",
+        alertText: action.payload.msg,
+      };
+
     case LOGOUT_USER:
       return {
         ...initialState,
         user: null,
         token: null,
       };
+
+    case TOGGLE_SIDEBAR:
+      return {
+        ...state,
+        showSidebar: !state.showSidebar,
+      };
+
     default:
       return;
   }

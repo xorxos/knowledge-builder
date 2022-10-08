@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Error, Landing, Register, ProtectedRoute } from "./pages";
-import {AllArticles, CreateArticle, Profile, SharedLayout, Stats} from "./pages/dashboard";
+import {AllArticles, CreateArticle, Profile, SharedLayout} from "./pages/dashboard";
 
 function App() {
   return (
@@ -14,10 +14,9 @@ function App() {
             </ProtectedRoute>
           }
         >
-          <Route path='profile' element={<Profile />} />
           <Route index element={<AllArticles />} />
-          <Route path='create-article' element={<CreateArticle />} />
-          <Route path='stats' element={<Stats />} />
+          <Route path='add-article' element={<CreateArticle />} />
+          <Route path='profile' element={<Profile />} />
         </Route>
         <Route path="/landing" element={<Landing />} />
         <Route path="/register" element={<Register />} />

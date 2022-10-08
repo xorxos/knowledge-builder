@@ -12,9 +12,10 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
   LOGOUT_USER,
-  EDIT_USER_BEGIN,
-  EDIT_USER_SUCCESS,
-  EDIT_USER_ERROR,
+  UPDATE_USER_BEGIN,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_ERROR,
+  TOGGLE_SIDEBAR,
 } from "./actions";
 
 const token = localStorage.getItem("token");
@@ -29,6 +30,31 @@ const initialState = {
   token: token,
   showSidebar: false,
   isEditing: false,
+  editJobId: "",
+  articleModuleOptions: [
+    "header",
+    "subheader",
+    "paragraph",
+    "bullets list",
+    "numbered list",
+    "code block",
+    "image",
+    "text-image split",
+    "alert",
+  ],
+  jobType: "full-time",
+  statusOptions: ["pending, published, flagged"],
+  status: "pending",
+  articles: [],
+  totalArticles: 0,
+  numOfPages: 1,
+  page: 1,
+  stats: {},
+  search: "",
+  searchStatus: "all",
+  searchType: "all",
+  sort: "latest",
+  sortOptions: ["latest", "oldest", "a-z", "z-a"],
 };
 
 const AppContext = React.createContext();
@@ -41,6 +67,7 @@ const AppProvider = ({ children }) => {
     baseURL: "/api/v1",
   });
 
+  // axios request
   authFetch.interceptors.request.use(
     (config) => {
       config.headers.common["Authorization"] = `Bearer ${state.token}`;
@@ -51,6 +78,7 @@ const AppProvider = ({ children }) => {
     }
   );
 
+  //axios response
   authFetch.interceptors.response.use(
     (response) => {
       return response;
@@ -78,6 +106,10 @@ const AppProvider = ({ children }) => {
     setTimeout(() => {
       dispatch({ type: CLEAR_ALERT });
     }, 3000);
+  };
+
+  const toggleSidebar = () => {
+    dispatch({ type: TOGGLE_SIDEBAR });
   };
 
   const addUserToLocalStorage = ({ user, token }) => {
@@ -122,15 +154,28 @@ const AppProvider = ({ children }) => {
     clearAlert();
   };
 
-  const editUser = async (currentUser) => {
-    dispatch({type: EDIT_USER_BEGIN})
-    console.log(currentUser)
+  const updateUser = async (currentUser) => {
+    dispatch({ type: UPDATE_USER_BEGIN });
     try {
-      //const {data} = await authFetch.post(`/auth/updateUser/${currentUser._id}`)
+      const { data } = await authFetch.patch("/auth/updateUser", currentUser);
+
+      const { user, token } = data;
+      dispatch({
+        type: UPDATE_USER_SUCCESS,
+        payload: { user, token },
+      });
+      addUserToLocalStorage({ user, token });
     } catch (error) {
-      
+      if (error.response.status !== 401) {
+        dispatch({
+          type: UPDATE_USER_ERROR,
+          payload: { msg: error.response.data.msg },
+        });
+        clearAlert();
+      }
     }
-  }
+    clearAlert();
+  };
 
   const logoutUser = () => {
     removeUserFromLocalStorage();
@@ -146,7 +191,8 @@ const AppProvider = ({ children }) => {
         registerUser,
         loginUser,
         logoutUser,
-        editUser,
+        updateUser,
+        toggleSidebar,
       }}
     >
       {children}
@@ -159,17 +205,16 @@ const useAppContext = () => {
 };
 
 const useScrollToAlert = () => {
-  const { showAlert } = useAppContext();
-  return useEffect(() => {
-    if (showAlert) {
-      const scrollToAlert = () => {
-        let scroll_to = document.getElementById("alert").offsetTop;
-        scroll_to = scroll_to - 30;
-        window.scrollTo({ behavior: "smooth", top: scroll_to });
-      };
-      scrollToAlert();
-    }
-  }, [showAlert]);
+  const {showAlert} = useAppContext();
+
+  useEffect(() => {
+      if (showAlert) {
+          let scroll_to = document.getElementById("alert").offsetTop - 30;
+          window.scrollTo({ behavior: "smooth", top: scroll_to });
+      }
+    },
+    [showAlert]
+  );
 };
 
 export { AppProvider, initialState, useAppContext, useScrollToAlert };

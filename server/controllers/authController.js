@@ -43,7 +43,7 @@ const register = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
-  const { email, firstName, lastName } = req.body;
+  const { email, firstName, lastName, password } = req.body;
 
   if (!email || !firstName || !lastName) {
     throw new BadRequestError("Please provide all values");
@@ -55,7 +55,11 @@ const updateUser = async (req, res) => {
   user.firstName = firstName;
   user.lastName = lastName;
 
+  if (password) user.password = password;
+
   await user.save();
+
+  user.password = undefined
 
   const token = user.createJWT();
 
