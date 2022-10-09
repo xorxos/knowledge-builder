@@ -30,6 +30,9 @@ const Wrapper = styled.nav`
   .btn-container {
     position: relative;
   }
+  .button-container button:not(:first-child) {
+    margin-bottom: 1rem;
+  }
   .btn {
     display: flex;
     align-items: center;
