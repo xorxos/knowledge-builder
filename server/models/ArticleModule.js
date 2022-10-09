@@ -8,7 +8,7 @@ const ArticleModuleSchema = new mongoose.Schema(
         "header",
         "subheader",
         "paragraph",
-        "bullets list",
+        "bullet list",
         "numbered list",
         "code block",
         "image",
@@ -31,6 +31,7 @@ const ArticleModuleSchema = new mongoose.Schema(
     alertColor: {
       type: String,
       enum: ["blue", "red", "yellow", "green", "orange"],
+      default: "red"
     },
     imagePath: {
       type: String,
