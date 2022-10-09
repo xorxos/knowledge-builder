@@ -1,6 +1,11 @@
+import {StatsContainer, ArticlesContainer} from "../../components/";
+
 const AllArticles = () => {
   return (
-    <div>AllArticles</div>
-  )
-}
-export default AllArticles
+    <>
+      <StatsContainer />
+      <ArticlesContainer />
+    </>
+  );
+};
+export default AllArticles;
