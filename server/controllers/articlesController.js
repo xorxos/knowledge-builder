@@ -48,8 +48,21 @@ const updateArticle = async (req, res) => {
   res.status(StatusCodes.OK).json({ updatedArticle });
 };
 
-const deleteArticle = (req, res) => {
-  res.status(StatusCodes.OK).json({ msg: "deleteArticle" });
+const deleteArticle = async (req, res) => {
+  // check if found
+  const { id: articleId } = req.params;
+  const article = await Article.findOne({ _id: articleId });
+
+  if (!article) {
+    throw new NotFoundError(`No article found with id: ${articleId}`);
+  }
+
+  // check permissions
+  checkPermissions(req.user, article.createdBy);
+
+  // delete and send status
+  await article.remove();
+  res.status(StatusCodes.OK).json({ msg: "Success! Article removed" });
 };
 
 export { createArticle, getAllArticles, updateArticle, deleteArticle };
