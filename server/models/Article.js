@@ -55,7 +55,7 @@ const ArticleSchema = new mongoose.Schema(
     ],
     status: {
       type: String,
-      enum: ["pending, published, flagged"],
+      enum: ["pending", "published", "flagged"],
       default: "pending",
     },
     category: {
