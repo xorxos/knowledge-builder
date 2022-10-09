@@ -15,8 +15,10 @@ const createArticle = async (req, res) => {
   res.status(StatusCodes.CREATED).json({ article });
 };
 
-const getAllArticles = (req, res) => {
-  res.status(StatusCodes.OK).json({ msg: "getAllArticles" });
+const getAllArticles = async (req, res) => {
+
+  const articles = await Article.find({createdyBy: req.user.userId})
+  res.status(StatusCodes.OK).json({articles});
 };
 
 const updateArticle = (req, res) => {
