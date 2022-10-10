@@ -13,6 +13,9 @@ const Wrapper = styled.article`
     .count {
       color: var(--white);
     }
+    .icon {
+      background: var(--white);
+    }
   }
   header {
     display: flex;
