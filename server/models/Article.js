@@ -61,6 +61,7 @@ const ArticleSchema = new mongoose.Schema(
     category: {
       type: String,
       maxlength: 50,
+      default: "uncategorized",
     },
     tags: [String],
     createdBy: {
