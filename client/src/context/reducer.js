@@ -16,6 +16,9 @@ import {
   TOGGLE_SIDEBAR,
   SHOW_STATS_BEGIN,
   SHOW_STATS_SUCCESS,
+  HANDLE_CHANGE,
+  CLEAR_VALUES,
+  CLEAR_FILTERS,
 } from "./actions";
 
 const reducer = (state, action) => {
@@ -139,6 +142,30 @@ const reducer = (state, action) => {
         ...state,
         isLoading: false,
         stats: action.payload.stats,
+      };
+
+    case HANDLE_CHANGE:
+      return {
+        ...state,
+        [action.payload.name]: action.payload.value,
+      };
+
+    case CLEAR_VALUES:
+      const initialState = {
+        isEditing: false,
+      };
+      return {
+        ...state,
+        ...initialState,
+      };
+
+    case CLEAR_FILTERS:
+      return {
+        ...state,
+        search: "",
+        searchStatus: "all",
+        searchType: "all",
+        sort: "by category",
       };
 
     default:

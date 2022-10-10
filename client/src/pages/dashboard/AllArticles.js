@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import {StatsContainer, ArticlesContainer} from "../../components/";
+import SearchContainer from "../../components/SearchContainer";
 import { useAppContext } from "../../context/appContext";
 
 const AllArticles = () => {
@@ -12,6 +13,7 @@ const AllArticles = () => {
   return (
     <>
       <StatsContainer />
+      <SearchContainer />
       <ArticlesContainer />
     </>
   );

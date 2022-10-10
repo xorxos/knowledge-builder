@@ -7,6 +7,8 @@ import NavLinks from "./NavLinks";
 import Navbar from "./Navbar";
 import ArticlesContainer from "./ArticlesContainer";
 import StatsContainer from "./StatsContainer";
+import FormRowSelect from "./FormRowSelect";
+import SearchContainer from "./SearchContainer";
 
 export {
   FormRow,
@@ -18,4 +20,7 @@ export {
   Navbar,
   ArticlesContainer,
   StatsContainer,
+  SearchContainer,
+  FormRowSelect,
+
 };

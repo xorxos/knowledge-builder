@@ -18,6 +18,9 @@ import {
   TOGGLE_SIDEBAR,
   SHOW_STATS_BEGIN,
   SHOW_STATS_SUCCESS,
+  HANDLE_CHANGE,
+  CLEAR_VALUES,
+  CLEAR_FILTERS,
 } from "./actions";
 
 const token = localStorage.getItem("token");
@@ -32,7 +35,7 @@ const initialState = {
   token: token,
   showSidebar: false,
   isEditing: false,
-  editJobId: "",
+  editArticleId: "",
   articleModuleOptions: [
     "header",
     "subheader",
@@ -44,9 +47,9 @@ const initialState = {
     "text-image split",
     "alert",
   ],
-  jobType: "full-time",
-  statusOptions: ["pending, published, flagged"],
-  status: "pending",
+  articleModuleType: "header",
+  statusOptions: ["unpublished", "published", "flagged"],
+  status: "unpublished",
   articles: [],
   totalArticles: 0,
   numOfPages: 1,
@@ -55,8 +58,8 @@ const initialState = {
   search: "",
   searchStatus: "all",
   searchType: "all",
-  sort: "latest",
-  sortOptions: ["latest", "oldest", "a-z", "z-a"],
+  sort: "by category",
+  sortOptions: ["latest", "oldest", "by tag", "by category", "a-z", "z-a"],
 };
 
 const AppContext = React.createContext();
@@ -197,10 +200,22 @@ const AppProvider = ({ children }) => {
       });
     } catch (error) {
       console.log(error);
-      console.log("logging out")
+      console.log("logging out");
       logoutUser();
     }
     clearAlert();
+  };
+
+  const handleChange = ({ value, name }) => {
+    dispatch({ type: HANDLE_CHANGE, payload: { name, value } });
+  };
+
+  const clearValues = () => {
+    dispatch({ type: CLEAR_VALUES });
+  };
+
+  const clearFilters = () => {
+    dispatch({ type: CLEAR_FILTERS });
   };
 
   return (
@@ -215,6 +230,9 @@ const AppProvider = ({ children }) => {
         updateUser,
         toggleSidebar,
         showStats,
+        handleChange,
+        clearValues,
+        clearFilters,
       }}
     >
       {children}
