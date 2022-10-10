@@ -15,14 +15,14 @@ const StatsContainer = () => {
     },
     {
       title: "published articles",
-      count: stats.interview || 0,
+      count: stats.published || 0,
       icon: <FaCalendarCheck />,
       color: "#646acb",
       bcg: "#e-1e8f9",
     },
     {
       title: "Flagged articles",
-      count: stats.declined || 0,
+      count: stats.flagged || 0,
       icon: <FaBug />,
       color: "#d65a6a",
       bcg: "#ffeeee",

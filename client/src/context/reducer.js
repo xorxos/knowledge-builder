@@ -14,6 +14,8 @@ import {
   UPDATE_USER_SUCCESS,
   UPDATE_USER_ERROR,
   TOGGLE_SIDEBAR,
+  SHOW_STATS_BEGIN,
+  SHOW_STATS_SUCCESS,
 } from "./actions";
 
 const reducer = (state, action) => {
@@ -123,6 +125,20 @@ const reducer = (state, action) => {
       return {
         ...state,
         showSidebar: !state.showSidebar,
+      };
+
+    case SHOW_STATS_BEGIN:
+      return {
+        ...state,
+        isLoading: true,
+        showAlert: false,
+      };
+
+    case SHOW_STATS_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        stats: action.payload.stats,
       };
 
     default:

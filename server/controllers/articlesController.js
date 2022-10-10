@@ -1,4 +1,5 @@
 import { StatusCodes } from "http-status-codes";
+import mongoose from "mongoose";
 import { BadRequestError, NotFoundError } from "../errors/index.js";
 import Article from "../models/Article.js";
 import checkPermissions from "../utils/checkPermissions.js";
@@ -65,4 +66,25 @@ const deleteArticle = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: "Success! Article removed" });
 };
 
-export { createArticle, getAllArticles, updateArticle, deleteArticle };
+const showStats = async (req, res) => {
+  let stats = await Article.aggregate([
+    { $match: { createdBy: mongoose.Types.ObjectId(req.user.userId) } },
+    { $group: { _id: "$status", count: { $sum: 1 } } },
+  ]);
+
+  stats = stats.reduce((acc, curr) => {
+    const { _id: title, count } = curr;
+    acc[title] = count;
+    return acc;
+  }, {});
+
+  const defaultStats = {
+    pending: stats.pending || 0,
+    published: stats.published || 0,
+    flagged: stats.flagged || 0,
+  };
+
+  res.status(StatusCodes.OK).json({ defaultStats });
+};
+
+export { createArticle, getAllArticles, updateArticle, deleteArticle, showStats };

@@ -16,6 +16,8 @@ import {
   UPDATE_USER_SUCCESS,
   UPDATE_USER_ERROR,
   TOGGLE_SIDEBAR,
+  SHOW_STATS_BEGIN,
+  SHOW_STATS_SUCCESS,
 } from "./actions";
 
 const token = localStorage.getItem("token");
@@ -182,6 +184,25 @@ const AppProvider = ({ children }) => {
     dispatch({ type: LOGOUT_USER });
   };
 
+  const showStats = async () => {
+    dispatch({ type: SHOW_STATS_BEGIN });
+
+    try {
+      const { data } = await authFetch.get("/articles/stats");
+      dispatch({
+        type: SHOW_STATS_SUCCESS,
+        payload: {
+          stats: data.defaultStats,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+      console.log("logging out")
+      logoutUser();
+    }
+    clearAlert();
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -193,6 +214,7 @@ const AppProvider = ({ children }) => {
         logoutUser,
         updateUser,
         toggleSidebar,
+        showStats,
       }}
     >
       {children}
@@ -205,16 +227,14 @@ const useAppContext = () => {
 };
 
 const useScrollToAlert = () => {
-  const {showAlert} = useAppContext();
+  const { showAlert } = useAppContext();
 
   useEffect(() => {
-      if (showAlert) {
-          let scroll_to = document.getElementById("alert").offsetTop - 30;
-          window.scrollTo({ behavior: "smooth", top: scroll_to });
-      }
-    },
-    [showAlert]
-  );
+    if (showAlert) {
+      let scroll_to = document.getElementById("alert").offsetTop - 30;
+      window.scrollTo({ behavior: "smooth", top: scroll_to });
+    }
+  }, [showAlert]);
 };
 
 export { AppProvider, initialState, useAppContext, useScrollToAlert };
