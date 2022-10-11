@@ -17,6 +17,7 @@ const Wrapper = styled.section`
     box-shadow: none;
     background: var(--white);
     color: black;
+    border-radius: var(--borderRadius) 0 0 var(--borderRadius);
 
     &:hover {
       background: var(--primary-500);
@@ -49,6 +50,11 @@ const Wrapper = styled.section`
     border-width: 1px;
     padding: 0.5rem;
     display: flex;
+    border-radius: var(--borderRadius);
+
+    &:focus-within {
+      outline: 1.5px solid
+    }
   }
 `;
 
