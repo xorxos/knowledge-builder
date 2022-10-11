@@ -13,9 +13,9 @@ import {
   UPDATE_USER_BEGIN,
   UPDATE_USER_SUCCESS,
   UPDATE_USER_ERROR,
+  GET_ARTICLES_BEGIN,
+  GET_ARTICLES_SUCCESS,
   TOGGLE_SIDEBAR,
-  SHOW_STATS_BEGIN,
-  SHOW_STATS_SUCCESS,
   HANDLE_CHANGE,
   CLEAR_VALUES,
   CLEAR_FILTERS,
@@ -130,18 +130,19 @@ const reducer = (state, action) => {
         showSidebar: !state.showSidebar,
       };
 
-    case SHOW_STATS_BEGIN:
+    case GET_ARTICLES_BEGIN:
       return {
         ...state,
         isLoading: true,
-        showAlert: false,
       };
 
-    case SHOW_STATS_SUCCESS:
+    case GET_ARTICLES_SUCCESS:
       return {
         ...state,
         isLoading: false,
+        articles: action.payload.articles,
         stats: action.payload.stats,
+        totalArticles: action.payload.count
       };
 
     case HANDLE_CHANGE:

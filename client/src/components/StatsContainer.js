@@ -1,5 +1,5 @@
 import StatItem from "./StatItem";
-import Wrapper from '../wrappers/StatsContainer'
+import Wrapper from "../wrappers/StatsContainer";
 import { useAppContext } from "../context/appContext";
 import { FaSuitcaseRolling, FaCalendarCheck, FaBug } from "react-icons/fa";
 
@@ -8,21 +8,21 @@ const StatsContainer = () => {
   const defaultStats = [
     {
       title: "unpublished articles",
-      count: stats.pending || 0,
+      count: stats.pending || -1,
       icon: <FaSuitcaseRolling />,
       color: "#e8b949",
       bcg: "#fcefc6",
     },
     {
       title: "published articles",
-      count: stats.published || 0,
+      count: stats.published || -1,
       icon: <FaCalendarCheck />,
       color: "#646acb",
       bcg: "#e-1e8f9",
     },
     {
       title: "Flagged articles",
-      count: stats.flagged || 0,
+      count: stats.flagged || -1,
       icon: <FaBug />,
       color: "#d65a6a",
       bcg: "#ffeeee",

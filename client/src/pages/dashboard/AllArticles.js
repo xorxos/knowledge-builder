@@ -5,10 +5,10 @@ import SearchContainer from "../../components/SearchContainer";
 import { useAppContext } from "../../context/appContext";
 
 const AllArticles = () => {
-  const { showStats, isLoading } = useAppContext();
+  const { getArticles, isLoading } = useAppContext();
 
   useEffect(() => {
-    showStats();
+    getArticles();
   }, []);
 
   if (isLoading) return <Loading center />;

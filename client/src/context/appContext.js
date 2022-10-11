@@ -15,9 +15,9 @@ import {
   UPDATE_USER_BEGIN,
   UPDATE_USER_SUCCESS,
   UPDATE_USER_ERROR,
+  GET_ARTICLES_BEGIN,
+  GET_ARTICLES_SUCCESS,
   TOGGLE_SIDEBAR,
-  SHOW_STATS_BEGIN,
-  SHOW_STATS_SUCCESS,
   HANDLE_CHANGE,
   CLEAR_VALUES,
   CLEAR_FILTERS,
@@ -188,20 +188,23 @@ const AppProvider = ({ children }) => {
     dispatch({ type: LOGOUT_USER });
   };
 
-  const showStats = async () => {
-    dispatch({ type: SHOW_STATS_BEGIN });
+  const getArticles = async () => {
+    dispatch({ type: GET_ARTICLES_BEGIN });
 
     try {
-      const { data } = await authFetch.get("/articles/stats");
+      const { data } = await authFetch.get("/articles");
       dispatch({
-        type: SHOW_STATS_SUCCESS,
+        type: GET_ARTICLES_SUCCESS,
         payload: {
-          stats: data.defaultStats,
+          articles: data.articles,
+          stats: data.stats,
+          count: data.count,
         },
       });
     } catch (error) {
       logoutUser();
     }
+    clearAlert();
   };
 
   const handleChange = ({ value, name }) => {
@@ -226,8 +229,8 @@ const AppProvider = ({ children }) => {
         loginUser,
         logoutUser,
         updateUser,
+        getArticles,
         toggleSidebar,
-        showStats,
         handleChange,
         clearValues,
         clearFilters,
