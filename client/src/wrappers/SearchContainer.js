@@ -1,44 +1,55 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const Wrapper = styled.section`
-.form {
+  .form {
     width: 100%;
     max-width: 100%;
   }
-  .form-input,
-  .form-select,
-  .btn-block {
+  .search-btn {
+    border-radius: 0;
+  }
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0 0.3rem;
+    text-align: center;
+    box-shadow: none;
+    background: var(--white);
+    color: black;
+
+    &:hover {
+      background: var(--primary-500);
+      color: var(--white);
+    }
+  }
+  .search-input {
+    flex: 1;
+    border: none;
+    font-size: 1.2rem;
+    padding-left: 10px;
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
+  .search-type {
+    border-style: solid;
+    border-width: 1px 0 1px 1px;
     height: 35px;
   }
-  .form-row {
+  .search-input,
+  .form-select {
+    height: 35px;
+  }
+  .search-row {
     margin-bottom: 0;
+    display: flex;
+    border-style: solid;
+    border-width: 1px;
+    padding: 0.5rem;
+    display: flex;
   }
-  .form-center {
-    display: grid;
-    grid-template-columns: 1fr;
-    column-gap: 2rem;
-    row-gap: 0.5rem;
-  }
-  h5 {
-    font-weight: 700;
-  }
-  .btn-block {
-    align-self: end;
-    margin-top: 1rem;
-  }
-  @media (min-width: 768px) {
-    .form-center {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-  @media (min-width: 992px) {
-    .form-center {
-      grid-template-columns: 1fr 1fr 1fr;
-    }
-    .btn-block {
-      margin-top: 0;
-    }
-  }
-`
+`;
 
 export default Wrapper;

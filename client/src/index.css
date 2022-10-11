@@ -236,8 +236,12 @@ ul {
   width: 100%;
   padding: 0.375rem 0.75rem;
   border-radius: var(--borderRadius);
-  background: var(--backgroundColor);
+  background: var(--white);
   border: 1px solid var(--grey-200);
+
+}
+.form-input:disabled {
+  background: var(--backgroundColor);
 }
 .form-input,
 .form-select,

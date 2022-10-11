@@ -57,6 +57,7 @@ const initialState = {
   stats: {},
   search: "",
   searchStatus: "all",
+  searchTypeOptions: ["title", "tag", "category"],
   searchType: "all",
   sort: "by category",
   sortOptions: ["latest", "oldest", "by tag", "by category", "a-z", "z-a"],

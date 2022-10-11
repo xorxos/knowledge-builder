@@ -9,6 +9,8 @@ import ArticlesContainer from "./ArticlesContainer";
 import StatsContainer from "./StatsContainer";
 import FormRowSelect from "./FormRowSelect";
 import SearchContainer from "./SearchContainer";
+import Loading from './Loading'
+import SearchBar from "./SearchBar";
 
 export {
   FormRow,
@@ -22,5 +24,6 @@ export {
   StatsContainer,
   SearchContainer,
   FormRowSelect,
-
+  Loading,
+  SearchBar,
 };
