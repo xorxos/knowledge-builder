@@ -199,11 +199,8 @@ const AppProvider = ({ children }) => {
         },
       });
     } catch (error) {
-      console.log(error);
-      console.log("logging out");
       logoutUser();
     }
-    clearAlert();
   };
 
   const handleChange = ({ value, name }) => {
