@@ -1,4 +1,4 @@
-const ArticleItem = ({ title }) => {
-  return <div>{title}</div>;
+const ArticleItem = ({ title, status }) => {
+  return <div>{title}: {status}</div>;
 };
 export default ArticleItem;

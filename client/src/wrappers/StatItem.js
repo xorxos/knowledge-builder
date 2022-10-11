@@ -1,8 +1,13 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const Wrapper = styled.article`
   padding: 1rem;
   background: var(--white);
+  background: ${(props) => {
+    if (props.selected) {
+      return props.color;
+    }
+  }};
   border-radius: var(--borderRadius);
   border-bottom: 5px solid ${(props) => props.color};
   cursor: pointer;
@@ -35,6 +40,12 @@ const Wrapper = styled.article`
     text-align: left;
     margin-top: 0.5rem;
   }
+  .title,
+  .count {
+    color: ${(props) => {
+      if (props.selected) return "var(--white)";
+    }};
+  }
   .icon {
     width: 70px;
     height: 60px;
@@ -48,6 +59,11 @@ const Wrapper = styled.article`
       color: ${(props) => props.color};
     }
   }
-`
+  .icon {
+    background: ${(props) => {
+      if (props.selected) return "var(--white)";
+    }};
+  }
+`;
 
-export default Wrapper
+export default Wrapper;

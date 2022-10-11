@@ -18,10 +18,27 @@ const createArticle = async (req, res) => {
 };
 
 const getAllArticles = async (req, res) => {
-  const articles = await Article.find({ createdyBy: req.user.userId });
-  const count = articles.length;
-  const stats = await showStats(req.user.userId);
-  res.status(StatusCodes.OK).json({ articles, count, stats });
+  const { status, searchType, sort, search } = req.query;
+
+  const queryObject = {
+    createdBy: req.user.userId,
+  };
+
+  if (status && status !== "all") {
+    queryObject.status = status;
+  }
+
+  if (search && searchType) {
+    queryObject[searchType] = { $regex: search, $options: "i" };
+  } else if (search) {
+    queryObject.title = { $regex: search, $options: "i" };
+  }
+
+  const articles = await Article.find(queryObject);
+  const count = await Article.countDocuments(queryObject);
+  const totalArticles = await Article.countDocuments();
+  const stats = await showStats(queryObject.createdBy);
+  res.status(StatusCodes.OK).json({ articles, count, totalArticles, stats });
 };
 
 const updateArticle = async (req, res) => {
@@ -68,9 +85,13 @@ const deleteArticle = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: "Success! Article removed" });
 };
 
-const showStats = async (userId) => {
+const showStats = async (createdBy) => {
   let stats = await Article.aggregate([
-    { $match: { createdBy: mongoose.Types.ObjectId(userId) } },
+    {
+      $match: {
+        createdBy: mongoose.Types.ObjectId(createdBy),
+      },
+    },
     { $group: { _id: "$status", count: { $sum: 1 } } },
   ]);
 
@@ -81,7 +102,7 @@ const showStats = async (userId) => {
   }, {});
 
   const defaultStats = {
-    pending: stats.pending || 0,
+    unpublished: stats.unpublished || 0,
     published: stats.published || 0,
     flagged: stats.flagged || 0,
   };

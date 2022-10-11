@@ -19,6 +19,7 @@ import {
   HANDLE_CHANGE,
   CLEAR_VALUES,
   CLEAR_FILTERS,
+  CHANGE_STATUS,
 } from "./actions";
 
 const reducer = (state, action) => {
@@ -142,7 +143,7 @@ const reducer = (state, action) => {
         isLoading: false,
         articles: action.payload.articles,
         stats: action.payload.stats,
-        totalArticles: action.payload.count
+        totalArticles: action.payload.count,
       };
 
     case HANDLE_CHANGE:
@@ -167,6 +168,18 @@ const reducer = (state, action) => {
         searchStatus: "all",
         searchType: "all",
         sort: "by category",
+      };
+
+    case CHANGE_STATUS:
+      if (action.payload.newStatus === state.searchStatus) {
+        return {
+          ...state,
+          searchStatus: "all",
+        };
+      }
+      return {
+        ...state,
+        searchStatus: action.payload.newStatus,
       };
 
     default:

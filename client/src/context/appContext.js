@@ -21,6 +21,7 @@ import {
   HANDLE_CHANGE,
   CLEAR_VALUES,
   CLEAR_FILTERS,
+  CHANGE_STATUS,
 } from "./actions";
 
 const token = localStorage.getItem("token");
@@ -58,9 +59,9 @@ const initialState = {
   search: "",
   searchStatus: "all",
   searchTypeOptions: ["title", "tag", "category"],
-  searchType: "all",
-  sort: "by category",
-  sortOptions: ["latest", "oldest", "by tag", "by category", "a-z", "z-a"],
+  searchType: "title",
+  sort: "category",
+  sortOptions: ["latest", "oldest", "tag", "category", "a-z", "z-a"],
 };
 
 const AppContext = React.createContext();
@@ -189,16 +190,26 @@ const AppProvider = ({ children }) => {
   };
 
   const getArticles = async () => {
+    const { page, search, searchStatus, searchType, sort } = state;
+
+    let url = `/articles?page=${page}&status=${searchStatus}&searchType=${searchType}&sort=${sort}`;
+
+    if (search) {
+      url = url + `&search=${search}`;
+    }
+
     dispatch({ type: GET_ARTICLES_BEGIN });
 
     try {
-      const { data } = await authFetch.get("/articles");
+      const { data } = await authFetch.get(url);
+      const { articles, stats, totalArticles, numOfPages } = data;
       dispatch({
         type: GET_ARTICLES_SUCCESS,
         payload: {
-          articles: data.articles,
-          stats: data.stats,
-          count: data.count,
+          articles,
+          stats,
+          count: totalArticles,
+          numOfPages,
         },
       });
     } catch (error) {
@@ -219,6 +230,10 @@ const AppProvider = ({ children }) => {
     dispatch({ type: CLEAR_FILTERS });
   };
 
+  const changeStatus = (newStatus) => {
+    dispatch({ type: CHANGE_STATUS, payload: {newStatus} });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -234,6 +249,7 @@ const AppProvider = ({ children }) => {
         handleChange,
         clearValues,
         clearFilters,
+        changeStatus,
       }}
     >
       {children}
