@@ -3,11 +3,13 @@ import Wrapper from "../wrappers/ArticlesContainer";
 import ArticleItem from "./ArticleItem";
 
 const ArticlesContainer = () => {
-  const {articles} = useAppContext();
+  const { articles } = useAppContext();
 
   return (
     <Wrapper>
-        <ArticleItem />
+      {articles.map((item, index) => {
+        return <ArticleItem key={index} {...item} />;
+      })}
     </Wrapper>
   );
 };
