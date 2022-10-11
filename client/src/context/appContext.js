@@ -19,6 +19,7 @@ import {
   GET_ARTICLES_SUCCESS,
   TOGGLE_SIDEBAR,
   HANDLE_CHANGE,
+  CHANGE_SEARCH_TYPE,
   CLEAR_VALUES,
   CLEAR_FILTERS,
   CHANGE_STATUS,
@@ -231,7 +232,11 @@ const AppProvider = ({ children }) => {
   };
 
   const changeStatus = (newStatus) => {
-    dispatch({ type: CHANGE_STATUS, payload: {newStatus} });
+    dispatch({ type: CHANGE_STATUS, payload: { newStatus } });
+  };
+
+  const changeSearchType = (newType) => {
+    dispatch({ type: CHANGE_SEARCH_TYPE, payload: { newType } });
   };
 
   return (
@@ -250,6 +255,7 @@ const AppProvider = ({ children }) => {
         clearValues,
         clearFilters,
         changeStatus,
+        changeSearchType,
       }}
     >
       {children}

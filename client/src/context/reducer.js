@@ -20,6 +20,7 @@ import {
   CLEAR_VALUES,
   CLEAR_FILTERS,
   CHANGE_STATUS,
+  CHANGE_SEARCH_TYPE,
 } from "./actions";
 
 const reducer = (state, action) => {
@@ -181,6 +182,12 @@ const reducer = (state, action) => {
         ...state,
         searchStatus: action.payload.newStatus,
       };
+
+    case CHANGE_SEARCH_TYPE:
+      return {
+        ...state,
+        searchType: action.payload.newType
+      }
 
     default:
       return;
