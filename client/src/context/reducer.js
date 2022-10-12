@@ -144,7 +144,8 @@ const reducer = (state, action) => {
         isLoading: false,
         articles: action.payload.articles,
         stats: action.payload.stats,
-        totalArticles: action.payload.count,
+        totalArticles: action.payload.totalArticles,
+        count: action.payload.count,
       };
 
     case HANDLE_CHANGE:
@@ -186,8 +187,8 @@ const reducer = (state, action) => {
     case CHANGE_SEARCH_TYPE:
       return {
         ...state,
-        searchType: action.payload.newType
-      }
+        searchType: action.payload.newType,
+      };
 
     default:
       return;

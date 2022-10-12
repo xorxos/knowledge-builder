@@ -58,6 +58,7 @@ const initialState = {
   page: 1,
   stats: {},
   search: "",
+  searchCount: 0,
   searchStatus: "all",
   searchTypeOptions: ["title", "tag", "category"],
   searchType: "title",
@@ -203,13 +204,14 @@ const AppProvider = ({ children }) => {
 
     try {
       const { data } = await authFetch.get(url);
-      const { articles, stats, totalArticles, numOfPages } = data;
+      const { articles, stats, totalArticles, count, numOfPages } = data;
       dispatch({
         type: GET_ARTICLES_SUCCESS,
         payload: {
           articles,
           stats,
-          count: totalArticles,
+          count,
+          totalArticles,
           numOfPages,
         },
       });
