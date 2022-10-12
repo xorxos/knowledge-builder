@@ -72,14 +72,12 @@ const Wrapper = styled.section`
   .search-row {
     margin-bottom: 0;
     display: flex;
-    padding: 0.5rem;
-    display: flex;
     border-radius: var(--borderRadius);
     background: var(--white);
 
-    &:focus-within {
+    /* &:focus-within {
       outline: 1px solid;
-    }
+    } */
   }
 `;
 
