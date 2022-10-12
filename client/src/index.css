@@ -148,6 +148,13 @@ ul {
 .hidden {
   display: none !important;
 }
+
+.right-auto {
+  margin-right: auto;
+}
+.left-auto {
+  margin-left: auto;
+}
 /* buttons */
 
 .btn {

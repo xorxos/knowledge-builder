@@ -7,6 +7,10 @@ const Wrapper = styled.article`
   grid-template-rows: 1fr auto;
   box-shadow: var(--shadow-2);
 
+  .actions {
+    display: flex;
+  }
+
   header {
     padding: 1rem 1.5rem;
     border-bottom: 1px solid var(--grey-100);
@@ -80,6 +84,10 @@ const Wrapper = styled.article`
   .delete-btn {
     color: var(--red-dark);
     background: var(--red-light);
+  }
+  .unpublish-btn {
+    background: var(--red-dark);
+    color: var(--white)
   }
   &:hover .actions {
     visibility: visible;

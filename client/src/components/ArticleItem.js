@@ -36,6 +36,8 @@ const ArticleItem = ({ _id, updatedAt, title, status, tags }) => {
             >
               Delete
             </button>
+            {status !== 'published' && <button type='button' className="btn publish-btn left-auto">publish</button>}
+            {status === 'published' && <button type='button' className="btn unpublish-btn left-auto">unpublish</button>}
           </div>
         </footer>
       </div>
