@@ -37,7 +37,9 @@ const getAllArticles = async (req, res) => {
   const articles = await Article.find(queryObject);
   const count = await Article.countDocuments(queryObject);
   const totalArticles = await Article.countDocuments();
-  const stats = await showStats(queryObject.createdBy);
+  let stats = await showStats(queryObject.createdBy);
+  stats.flagged = await await Article.countDocuments({ flagged: true });
+
   res.status(StatusCodes.OK).json({ articles, count, totalArticles, stats });
 };
 

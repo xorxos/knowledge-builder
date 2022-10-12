@@ -55,13 +55,12 @@ const ArticleSchema = new mongoose.Schema(
     ],
     status: {
       type: String,
-      enum: ["pending", "published", "flagged"],
-      default: "pending",
+      enum: ["unpublished", "published"],
+      default: "unpublished",
     },
-    category: {
-      type: String,
-      maxlength: 50,
-      default: "uncategorized",
+    flagged: {
+      type: Boolean,
+      default: false,
     },
     tags: [String],
     createdBy: {
