@@ -1,11 +1,22 @@
 import StatItem from "./StatItem";
 import Wrapper from "../wrappers/StatsContainer";
 import { useAppContext } from "../context/appContext";
-import { FaSuitcaseRolling, FaCalendarCheck, FaBug } from "react-icons/fa";
+import {
+  FaSuitcaseRolling,
+  FaCalendarCheck,
+  FaBug,
+  FaCheck,
+} from "react-icons/fa";
 
 const StatsContainer = () => {
-  const { stats } = useAppContext();
+  const { stats, totalArticles } = useAppContext();
   const defaultStats = [
+    {
+      title: "all",
+      count: totalArticles || 0,
+      color: "#646acb",
+      bcg: "white",
+    },
     {
       title: "unpublished",
       count: stats.unpublished || 0,
@@ -17,7 +28,7 @@ const StatsContainer = () => {
       title: "published",
       count: stats.published || 0,
       icon: <FaCalendarCheck />,
-      color: "#646acb",
+      color: "green",
       bcg: "#e-1e8f9",
     },
     {
