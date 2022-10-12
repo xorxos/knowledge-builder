@@ -23,6 +23,7 @@ import {
   CLEAR_VALUES,
   CLEAR_FILTERS,
   CHANGE_STATUS,
+  CHANGE_SEARCH_FLAG,
 } from "./actions";
 
 const token = localStorage.getItem("token");
@@ -50,7 +51,7 @@ const initialState = {
     "alert",
   ],
   articleModuleType: "header",
-  statusOptions: ["unpublished", "published", "flagged"],
+  statusOptions: ["unpublished", "published"],
   status: "unpublished",
   articles: [],
   totalArticles: 0,
@@ -59,6 +60,7 @@ const initialState = {
   stats: {},
   search: "",
   searchCount: 0,
+  searchFlag: "all",
   searchStatus: "all",
   searchTypeOptions: ["title", "tag", "category"],
   searchType: "title",
@@ -192,12 +194,16 @@ const AppProvider = ({ children }) => {
   };
 
   const getArticles = async () => {
-    const { page, search, searchStatus, searchType, sort } = state;
+    const { page, search, searchStatus, searchType, sort, searchFlag } = state;
 
     let url = `/articles?page=${page}&status=${searchStatus}&searchType=${searchType}&sort=${sort}`;
 
     if (search) {
       url = url + `&search=${search}`;
+    }
+
+    if (searchFlag) {
+      url = url + `&flagged=true`
     }
 
     dispatch({ type: GET_ARTICLES_BEGIN });
@@ -241,6 +247,10 @@ const AppProvider = ({ children }) => {
     dispatch({ type: CHANGE_SEARCH_TYPE, payload: { newType } });
   };
 
+  const changeSearchFlag = () => {
+    dispatch({ type: CHANGE_SEARCH_FLAG });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -258,6 +268,7 @@ const AppProvider = ({ children }) => {
         clearFilters,
         changeStatus,
         changeSearchType,
+        changeSearchFlag,
       }}
     >
       {children}

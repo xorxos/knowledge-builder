@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 import Wrapper from "../wrappers/ArticleItem";
 import ArticleInfo from "./ArticleInfo";
 
-const ArticleItem = ({ _id, updatedAt, title, status, tags }) => {
-
+const ArticleItem = ({ _id, updatedAt, title, status, tags, flagged }) => {
   let date = moment(updatedAt);
   date = date.format("MMM Do, YYYY");
 
@@ -17,7 +16,7 @@ const ArticleItem = ({ _id, updatedAt, title, status, tags }) => {
           <h5>{title}</h5>
           <ArticleInfo text={"Last modified: " + date} />
         </div>
-        <div className={`status ${status}`}>{status}</div>
+        {flagged && <div className="status flagged">flagged</div>}
       </header>
       <div className="content">
         <footer>
@@ -36,8 +35,16 @@ const ArticleItem = ({ _id, updatedAt, title, status, tags }) => {
             >
               Delete
             </button>
-            {status !== 'published' && <button type='button' className="btn publish-btn left-auto">publish</button>}
-            {status === 'published' && <button type='button' className="btn unpublish-btn left-auto">unpublish</button>}
+            {status !== "published" && (
+              <button type="button" className="btn publish-btn left-auto">
+                publish
+              </button>
+            )}
+            {status === "published" && (
+              <button type="button" className="btn unpublish-btn left-auto">
+                unpublish
+              </button>
+            )}
           </div>
         </footer>
       </div>

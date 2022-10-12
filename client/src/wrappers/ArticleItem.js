@@ -20,6 +20,10 @@ const Wrapper = styled.article`
     h5 {
       letter-spacing: 0;
     }
+
+    div:nth-child(2) {
+      margin-left: auto;
+    }
   }
   .info {
     h5 {
@@ -35,10 +39,12 @@ const Wrapper = styled.article`
   .unpublished {
     background: #fcefc7;
     color: #e9b949;
+    margin-left: 0.5rem;
   }
   .published {
     background: #e0e8f9;
     color: #647acb;
+    margin-left: 0.5rem;
   }
   .flagged {
     background: #ffeeee;
@@ -50,7 +56,7 @@ const Wrapper = styled.article`
   .content-center {
     display: grid;
     grid-template-columns: 1fr;
-    row-gap: .5rem;
+    row-gap: 0.5rem;
     @media (min-width: 576px) {
       grid-template-columns: 1fr 1fr;
     }
@@ -66,8 +72,7 @@ const Wrapper = styled.article`
     text-transform: capitalize;
     letter-spacing: var(--letterSpacing);
     text-align: center;
-    margin-left: auto;
-    padding: 0 .5rem;
+    padding: 0 0.5rem;
     height: 30px;
   }
   .edit-btn,
@@ -87,7 +92,7 @@ const Wrapper = styled.article`
   }
   .unpublish-btn {
     background: var(--red-dark);
-    color: var(--white)
+    color: var(--white);
   }
   &:hover .actions {
     visibility: visible;

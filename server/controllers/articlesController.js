@@ -18,7 +18,7 @@ const createArticle = async (req, res) => {
 };
 
 const getAllArticles = async (req, res) => {
-  const { status, searchType, sort, search } = req.query;
+  const { status, searchType, sort, search, flagged } = req.query;
 
   const queryObject = {
     createdBy: req.user.userId,
@@ -26,6 +26,10 @@ const getAllArticles = async (req, res) => {
 
   if (status && status !== "all") {
     queryObject.status = status;
+  }
+
+  if (flagged && flagged !== "all") {
+    queryObject.flagged = flagged;
   }
 
   if (search && searchType) {
@@ -38,7 +42,7 @@ const getAllArticles = async (req, res) => {
   const count = await Article.countDocuments(queryObject);
   const totalArticles = await Article.countDocuments();
   let stats = await showStats(queryObject.createdBy);
-  stats.flagged = await await Article.countDocuments({ flagged: true });
+  stats.flagged = await Article.countDocuments({ flagged: true });
 
   res.status(StatusCodes.OK).json({ articles, count, totalArticles, stats });
 };

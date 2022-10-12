@@ -20,6 +20,8 @@ export const CHANGE_STATUS = "CHANGE_STATUS";
 
 export const CHANGE_SEARCH_TYPE = "CHANGE_SEARCH_TYPE";
 
+export const CHANGE_SEARCH_FLAG = "CHANGE_SEARCH_FLAG";
+
 export const LOGOUT_USER = "LOGOUT_USER";
 
 export const HANDLE_CHANGE = "HANDLE_CHANGE";

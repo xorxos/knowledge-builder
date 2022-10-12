@@ -5,12 +5,11 @@ import SearchContainer from "../../components/SearchContainer";
 import { useAppContext } from "../../context/appContext";
 
 const AllArticles = () => {
-  const { getArticles, isLoading, searchStatus } = useAppContext();
+  const { getArticles, isLoading, searchStatus, searchFlag } = useAppContext();
 
   useEffect(() => {
     getArticles();
-  }, [searchStatus]);
-
+  }, [searchStatus, searchFlag]);
 
   return (
     <>
