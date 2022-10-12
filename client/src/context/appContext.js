@@ -196,7 +196,7 @@ const AppProvider = ({ children }) => {
   const getArticles = async () => {
     const { page, search, searchStatus, searchType, sort, searchFlag } = state;
 
-    let url = `/articles?page=${page}&status=${searchStatus}&searchType=${searchType}&sort=${sort}`;
+    let url = `/articles?page=${page}&status=${searchStatus}&searchType=${searchType}`;
 
     if (search) {
       url = url + `&search=${search}`;

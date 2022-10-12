@@ -9,7 +9,6 @@ const StatItem = ({ count, title, icon, color, bcg }) => {
   if(title === 'flagged' && searchFlag) {
     selected = true
   }
-  console.log(title + ": " + selected)
 
   const handleClick = (title) => {
     if (title === "flagged") {
