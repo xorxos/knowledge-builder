@@ -47,7 +47,7 @@ const Wrapper = styled.nav`
     top: 40px;
     left: 0;
     width: 100%;
-    background: var(--primary-100);
+    background: var(--white);
     box-shadow: var(--shadow-2);
     padding: 0.5rem;
     text-align: center;
@@ -58,7 +58,7 @@ const Wrapper = styled.nav`
     visibility: visible;
   }
   .dropdown-btn {
-    background: transparent;
+    background: var(--white);
     border-color: transparent;
     color: var(--primary-500);
     letter-spacing: var(--letterSpacing);
