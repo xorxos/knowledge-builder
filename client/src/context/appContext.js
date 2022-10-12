@@ -60,7 +60,7 @@ const initialState = {
   stats: {},
   search: "",
   searchCount: 0,
-  searchFlag: "all",
+  searchFlag: false,
   searchStatus: "all",
   searchTypeOptions: ["title", "tag", "category"],
   searchType: "title",
