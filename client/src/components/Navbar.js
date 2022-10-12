@@ -3,6 +3,7 @@ import { FaAlignLeft, FaUserCircle, FaCaretDown } from "react-icons/fa";
 import { useAppContext } from "../context/appContext";
 import Logo from "./Logo";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const { toggleSidebar, logoutUser, user } = useAppContext();
@@ -30,13 +31,9 @@ const Navbar = () => {
           </button>
           <div className={showLogout ? "dropdown show-dropdown" : "dropdown"}>
             <div className="button-container">
-              <button
-                type="button"
-                className="dropdown-btn"
-                onClick={logoutUser}
-              >
+              <Link to="/dashboard/" className="dropdownbtn">
                 Dashboard
-              </button>
+              </Link>
               <button
                 type="button"
                 className="dropdown-btn"

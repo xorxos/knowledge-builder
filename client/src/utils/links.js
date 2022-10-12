@@ -6,7 +6,7 @@ const links = [
   {
     id: 1,
     text: "all articles",
-    path: "/",
+    path: "",
     icon: <MdQueryStats />,
   },
   {

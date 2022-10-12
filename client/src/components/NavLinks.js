@@ -10,7 +10,6 @@ const NavLinks = ({toggleSidebar}) => {
         return (
           <NavLink
             to={path}
-            end
             key={id}
             onClick={toggleSidebar}
             className={({ isActive }) =>

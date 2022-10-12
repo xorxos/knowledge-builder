@@ -1,9 +1,10 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { FaCaretDown } from "react-icons/fa";
 import { useAppContext } from "../context/appContext";
 
 const SearchBar = ({ handleChange }) => {
-  const { searchType, changeSearchType } = useAppContext();
+  const { searchType, changeSearchType, search, getArticles } = useAppContext();
   const [showSearchTypes, setShowSearchTypes] = useState(false);
 
   const handleTypeChange = () => {
@@ -11,6 +12,14 @@ const SearchBar = ({ handleChange }) => {
     if (searchType === "title") changeSearchType("tag");
     setShowSearchTypes((prevState) => !prevState);
   };
+
+  useEffect(() => {
+    let timer = setTimeout(() => {
+      getArticles();
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [search]);
 
   return (
     <div className="search-row">
