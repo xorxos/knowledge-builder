@@ -1,4 +1,4 @@
-import Alert from "./Alert";
+import AlertModule from "./AlertModule";
 import Bullets from "./Bullets";
 import Code from "./Code";
 import Header from "./Header";
@@ -10,7 +10,7 @@ import TextImage from "./TextImage";
 import Tags from "./Tags";
 
 export {
-  Alert,
+  AlertModule,
   Bullets,
   Code,
   Header,
