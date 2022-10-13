@@ -47,7 +47,6 @@ const Wrapper = styled.article`
     margin-left: 0.5rem;
   }
   .flagged {
-    background: #ffeeee;
     color: #d66a6a;
   }
   .content {
@@ -68,9 +67,6 @@ const Wrapper = styled.article`
     }
   }
   .status {
-    border-radius: var(--borderRadius);
-    text-transform: capitalize;
-    letter-spacing: var(--letterSpacing);
     text-align: center;
     padding: 0 0.5rem;
     height: 30px;

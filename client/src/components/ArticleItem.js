@@ -1,6 +1,6 @@
 import moment from "moment";
 import { useAppContext } from "../context/appContext";
-import { FaCalendarAlt } from "react-icons/fa";
+import { FaFlag } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Wrapper from "../wrappers/ArticleItem";
 import ArticleInfo from "./ArticleInfo";
@@ -16,7 +16,7 @@ const ArticleItem = ({ _id, updatedAt, title, status, tags, flagged }) => {
           <h5>{title}</h5>
           <ArticleInfo text={"Last modified: " + date} />
         </div>
-        {flagged && <div className="status flagged">flagged</div>}
+        {flagged && <div className="status flagged"><FaFlag /></div>}
       </header>
       <div className="content">
         <footer>
