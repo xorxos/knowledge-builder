@@ -258,7 +258,28 @@ const AppProvider = ({ children }) => {
     try {
       await authFetch.patch(`/articles/${articleId}`, { flagged: !flag });
       dispatch({ type: TOGGLE_FLAG_SUCCESS });
-      displayAlert("Changes Successfully Saved!");
+      displayAlert("Changes Saved Successfully!");
+      getArticles();
+    } catch (error) {
+      logoutUser();
+      clearAlert();
+    }
+  };
+
+  const togglePublish = async (articleId, status) => {
+    dispatch({ type: TOGGLE_PUBLISH_BEGIN });
+
+    let newStatus;
+    if (status === "published") {
+      newStatus = "unpublished";
+    } else {
+      newStatus = "published";
+    }
+
+    try {
+      await authFetch.patch(`/articles/${articleId}`, { status: newStatus });
+      dispatch({ type: TOGGLE_PUBLISH_SUCCESS });
+      displayAlert("Changes Saved Successfully!");
       getArticles();
     } catch (error) {
       logoutUser();
@@ -315,6 +336,7 @@ const AppProvider = ({ children }) => {
         selectTag,
         deleteArticle,
         toggleFlag,
+        togglePublish,
       }}
     >
       {children}

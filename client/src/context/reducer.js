@@ -246,6 +246,19 @@ const reducer = (state, action) => {
         alertType: "success",
       };
 
+    case TOGGLE_PUBLISH_BEGIN:
+      return {
+        ...state,
+        isLoading: true,
+      };
+
+    case TOGGLE_PUBLISH_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        alertType: "success",
+      };
+
     default:
       return;
   }
