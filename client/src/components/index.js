@@ -9,9 +9,9 @@ import ArticlesContainer from "./ArticlesContainer";
 import StatsContainer from "./StatsContainer";
 import FormRowSelect from "./FormRowSelect";
 import SearchContainer from "./SearchContainer";
-import Loading from './Loading'
+import Loading from "./Loading";
 import SearchBar from "./SearchBar";
-import Tags from './Tags'
+import Tags from "./Tags";
 
 export {
   FormRow,

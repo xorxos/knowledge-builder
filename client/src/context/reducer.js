@@ -23,6 +23,12 @@ import {
   CHANGE_SEARCH_TYPE,
   CHANGE_SEARCH_FLAG,
   SELECT_TAG,
+  DELETE_ARTICLE_BEGIN,
+  DELETE_ARTICLE_SUCCESS,
+  TOGGLE_FLAG_BEGIN,
+  TOGGLE_FLAG_SUCCESS,
+  TOGGLE_PUBLISH_BEGIN,
+  TOGGLE_PUBLISH_SUCCESS,
 } from "./actions";
 
 const reducer = (state, action) => {
@@ -40,8 +46,6 @@ const reducer = (state, action) => {
       return {
         ...state,
         showAlert: true,
-        alertType: "danger",
-        alertText: "Please provide all values!",
       };
 
     case CLEAR_ALERT:
@@ -214,6 +218,20 @@ const reducer = (state, action) => {
         searchType: "tag",
         search: action.payload.tag,
       };
+
+    case DELETE_ARTICLE_BEGIN:
+      return {
+        ...state,
+        isLoading: true,
+      };
+
+    case DELETE_ARTICLE_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        alertType: "success",
+        alertText: "Article Deleted!",
+      }
 
     default:
       return;

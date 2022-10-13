@@ -8,6 +8,8 @@ import { Tags } from "./";
 
 const ArticleItem = ({ _id, updatedAt, title, status, tags, flagged }) => {
 
+  const {deleteArticle} = useAppContext();
+
   let date = moment(updatedAt);
   date = date.format("MMM Do, YYYY");
 
@@ -38,7 +40,7 @@ const ArticleItem = ({ _id, updatedAt, title, status, tags, flagged }) => {
             <button
               type="button"
               className="btn delete-btn"
-              onClick={() => console.log("delete article" + _id)}
+              onClick={() => deleteArticle(_id)}
             >
               Delete
             </button>

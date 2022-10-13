@@ -8,6 +8,7 @@ const ArticlesContainer = () => {
 
   if (isLoading) return <Loading center />;
 
+
   if (articles?.length === 0) {
     return (
       <Wrapper>

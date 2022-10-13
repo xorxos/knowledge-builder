@@ -1,17 +1,17 @@
 import { useEffect } from "react";
 import { StatsContainer, ArticlesContainer } from "../../components/";
-import Loading from "../../components/Loading";
 import SearchContainer from "../../components/SearchContainer";
 import { useAppContext } from "../../context/appContext";
+import {Alert} from "../../components/";
 
 const AllArticles = () => {
   const {
     getArticles,
-    isLoading,
     searchStatus,
     searchFlag,
     search,
     searchType,
+    showAlert,
   } = useAppContext();
 
   useEffect(() => {
@@ -22,6 +22,7 @@ const AllArticles = () => {
     <>
       <StatsContainer />
       <SearchContainer />
+      {showAlert && <Alert />}
       <ArticlesContainer />
     </>
   );

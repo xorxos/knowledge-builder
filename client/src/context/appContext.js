@@ -25,6 +25,12 @@ import {
   CHANGE_STATUS,
   CHANGE_SEARCH_FLAG,
   SELECT_TAG,
+  DELETE_ARTICLE_BEGIN,
+  DELETE_ARTICLE_SUCCESS,
+  TOGGLE_FLAG_BEGIN,
+  TOGGLE_FLAG_SUCCESS,
+  TOGGLE_PUBLISH_BEGIN,
+  TOGGLE_PUBLISH_SUCCESS,
 } from "./actions";
 
 const token = localStorage.getItem("token");
@@ -232,6 +238,20 @@ const AppProvider = ({ children }) => {
     clearAlert();
   };
 
+  const deleteArticle = async (articleId) => {
+    dispatch({ type: DELETE_ARTICLE_BEGIN });
+
+    try {
+      await authFetch.delete(`/articles/${articleId}`);
+      dispatch({ type: DELETE_ARTICLE_SUCCESS });
+      displayAlert();
+      getArticles();
+    } catch (error) {
+      logoutUser();
+      clearAlert();
+    }
+  };
+
   const handleChange = ({ value, name }) => {
     dispatch({ type: HANDLE_CHANGE, payload: { name, value } });
   };
@@ -279,6 +299,7 @@ const AppProvider = ({ children }) => {
         changeSearchType,
         changeSearchFlag,
         selectTag,
+        deleteArticle,
       }}
     >
       {children}
