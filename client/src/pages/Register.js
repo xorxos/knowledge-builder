@@ -50,7 +50,7 @@ const Register = () => {
       !password ||
       (!isMember && (!firstName || !lastName || !confirmPassword))
     ) {
-      displayAlert();
+      displayAlert("Please provide all values!");
       return;
     }
 
