@@ -9,6 +9,10 @@ const Wrapper = styled.article`
 
   .actions {
     display: flex;
+
+    button:nth-child(3) {
+      margin-left: auto;
+    }
   }
 
   header {
@@ -43,7 +47,6 @@ const Wrapper = styled.article`
   .published {
     background: #e0e8f9;
     color: #647acb;
-    margin-left: 0.5rem;
   }
   .flagged {
     color: #d66a6a;
@@ -98,6 +101,7 @@ const Wrapper = styled.article`
   .delete-btn {
     color: var(--red-dark);
     background: var(--red-light);
+    margin-right: 0.5rem;
   }
   .unpublish-btn {
     background: var(--red-dark);

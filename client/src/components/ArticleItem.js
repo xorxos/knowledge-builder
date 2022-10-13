@@ -41,13 +41,14 @@ const ArticleItem = ({ _id, updatedAt, title, status, tags, flagged }) => {
             >
               Delete
             </button>
+            {flagged && <button type="button" className="btn delete-btn">unflag</button>}
             {status !== "published" && (
-              <button type="button" className="btn publish-btn left-auto">
+              <button type="button" className="btn publish-btn">
                 publish
               </button>
             )}
             {status === "published" && (
-              <button type="button" className="btn unpublish-btn left-auto">
+              <button type="button" className="btn unpublish-btn">
                 unpublish
               </button>
             )}
