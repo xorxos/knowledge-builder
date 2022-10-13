@@ -6,11 +6,23 @@ import { useAppContext } from "../context/appContext";
 const SearchBar = ({ handleChange }) => {
   const { searchType, changeSearchType, search } = useAppContext();
   const [showSearchTypes, setShowSearchTypes] = useState(false);
+  const [searchText, setSearchText] = useState("");
+
+  useEffect(() => {
+    setSearchText(search);
+  }, [search]);
 
   const handleTypeChange = () => {
     if (searchType === "tag") changeSearchType("title");
     if (searchType === "title") changeSearchType("tag");
     setShowSearchTypes((prevState) => !prevState);
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchText(e.target.value);
+    setTimeout(() => {
+      handleChange(e);
+    }, 500);
   };
 
   return (
@@ -45,8 +57,8 @@ const SearchBar = ({ handleChange }) => {
         type="text"
         name="search"
         placeholder="Type here to search"
-        value={search}
-        onChange={handleChange}
+        value={searchText}
+        onChange={(e) => handleSearchChange(e)}
       />
     </div>
   );
