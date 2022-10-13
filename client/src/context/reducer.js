@@ -38,7 +38,6 @@ const reducer = (state, action) => {
         return {
           ...state,
           showAlert: true,
-          alertType: "danger",
           alertText: action.payload.customMessage,
         };
       }
@@ -46,6 +45,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         showAlert: true,
+        alertType: "danger",
       };
 
     case CLEAR_ALERT:
@@ -231,7 +231,20 @@ const reducer = (state, action) => {
         isLoading: false,
         alertType: "success",
         alertText: "Article Deleted!",
-      }
+      };
+
+    case TOGGLE_FLAG_BEGIN:
+      return {
+        ...state,
+        isLoading: true,
+      };
+
+    case TOGGLE_FLAG_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        alertType: "success",
+      };
 
     default:
       return;

@@ -72,12 +72,6 @@ const getAllArticles = async (req, res) => {
 
 const updateArticle = async (req, res) => {
   const { id: articleId } = req.params;
-  const { title } = req.body;
-
-  // throw error if required field is missing
-  if (!title) {
-    throw new BadRequestError("Please provide all values");
-  }
 
   // check if article is found
   const article = await Article.findOne({ _id: articleId });

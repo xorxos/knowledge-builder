@@ -8,7 +8,7 @@ import { Tags } from "./";
 
 const ArticleItem = ({ _id, updatedAt, title, status, tags, flagged }) => {
 
-  const {deleteArticle} = useAppContext();
+  const {deleteArticle, toggleFlag} = useAppContext();
 
   let date = moment(updatedAt);
   date = date.format("MMM Do, YYYY");
@@ -45,12 +45,12 @@ const ArticleItem = ({ _id, updatedAt, title, status, tags, flagged }) => {
               Delete
             </button>
             {flagged && (
-              <button type="button" className="btn edit-btn">
+              <button type="button" className="btn edit-btn" onClick={() => toggleFlag(_id, flagged)}>
                 unflag
               </button>
             )}
             {!flagged && (
-              <button type="button" className="btn delete-btn">
+              <button type="button" className="btn delete-btn" onClick={() => toggleFlag(_id, flagged)}>
                 flag
               </button>
             )}

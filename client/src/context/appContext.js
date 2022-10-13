@@ -40,7 +40,7 @@ const initialState = {
   isLoading: false,
   showAlert: false,
   alertText: "",
-  alertType: "",
+  alertType: "danger",
   user: user ? JSON.parse(user) : null,
   token: token,
   showSidebar: false,
@@ -252,6 +252,20 @@ const AppProvider = ({ children }) => {
     }
   };
 
+  const toggleFlag = async (articleId, flag) => {
+    dispatch({ type: TOGGLE_FLAG_BEGIN });
+
+    try {
+      await authFetch.patch(`/articles/${articleId}`, { flagged: !flag });
+      dispatch({ type: TOGGLE_FLAG_SUCCESS });
+      displayAlert("Changes Successfully Saved!");
+      getArticles();
+    } catch (error) {
+      logoutUser();
+      clearAlert();
+    }
+  };
+
   const handleChange = ({ value, name }) => {
     dispatch({ type: HANDLE_CHANGE, payload: { name, value } });
   };
@@ -300,6 +314,7 @@ const AppProvider = ({ children }) => {
         changeSearchFlag,
         selectTag,
         deleteArticle,
+        toggleFlag,
       }}
     >
       {children}
