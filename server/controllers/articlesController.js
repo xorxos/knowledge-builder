@@ -5,10 +5,17 @@ import Article from "../models/Article.js";
 import checkPermissions from "../utils/checkPermissions.js";
 
 const createArticle = async (req, res) => {
-  const { title } = req.body;
+  const { title, tags } = req.body;
 
   if (!title) {
     throw new BadRequestError("Please provide all values");
+  }
+
+  // force lowercase on tags
+  // so we don't need to use regex when searching later
+  if (tags.length > 0) {
+    const newTags = tags.map((item) => item.toLowerCase());
+    req.body.tags = newTags;
   }
 
   req.body.createdBy = req.user.userId;
@@ -32,14 +39,30 @@ const getAllArticles = async (req, res) => {
     queryObject.flagged = flagged;
   }
 
-  if (search && searchType) {
-    queryObject[searchType] = { $regex: search, $options: "i" };
-  } else if (search) {
+  let articles;
+  let count;
+
+  if (search && searchType && searchType === "title") {
     queryObject.title = { $regex: search, $options: "i" };
+    articles = await Article.find(queryObject);
+    count = await Article.countDocuments(queryObject);
+  } else if (searchType && search && searchType === "tag") {
+    let searchTags = search.split(",");
+    searchTags = searchTags.map((item) => {
+      return { tags: { $regex: item.trim().toLowerCase(), $options: "i" } };
+    });
+
+    articles = await Article.find({
+      $and: [...searchTags],
+      ...queryObject,
+    });
+
+    count = articles.length;
+  } else {
+    articles = await Article.find(queryObject);
+    count = articles.length;
   }
 
-  const articles = await Article.find(queryObject);
-  const count = await Article.countDocuments(queryObject);
   const totalArticles = await Article.countDocuments();
   let stats = await showStats(queryObject.createdBy);
   stats.flagged = await Article.countDocuments({ flagged: true });

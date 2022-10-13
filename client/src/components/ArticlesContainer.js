@@ -8,7 +8,7 @@ const ArticlesContainer = () => {
 
   if (isLoading) return <Loading center />;
 
-  if (articles.length === 0) {
+  if (articles?.length === 0) {
     return (
       <Wrapper>
         <h2>No articles to display...</h2>
@@ -19,10 +19,10 @@ const ArticlesContainer = () => {
   return (
     <Wrapper>
       <h5>
-        {articles.length} article{articles.length > 1 && "s"} found
+        {articles?.length} article{articles?.length > 1 && "s"} found
       </h5>
       <div className="articles">
-        {articles.map((item, index) => {
+        {articles?.map((item, index) => {
           return <ArticleItem key={index} {...item} />;
         })}
       </div>
