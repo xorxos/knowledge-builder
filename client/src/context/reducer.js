@@ -22,6 +22,7 @@ import {
   CHANGE_STATUS,
   CHANGE_SEARCH_TYPE,
   CHANGE_SEARCH_FLAG,
+  SELECT_TAG,
 } from "./actions";
 
 const reducer = (state, action) => {
@@ -205,6 +206,13 @@ const reducer = (state, action) => {
       return {
         ...state,
         searchType: action.payload.newType,
+      };
+
+    case SELECT_TAG:
+      return {
+        ...state,
+        searchType: "tag",
+        search: action.payload.tag,
       };
 
     default:

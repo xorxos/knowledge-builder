@@ -7,6 +7,7 @@ import ArticleInfo from "./ArticleInfo";
 import { Tags } from "./";
 
 const ArticleItem = ({ _id, updatedAt, title, status, tags, flagged }) => {
+
   let date = moment(updatedAt);
   date = date.format("MMM Do, YYYY");
 
@@ -41,8 +42,16 @@ const ArticleItem = ({ _id, updatedAt, title, status, tags, flagged }) => {
             >
               Delete
             </button>
-            {flagged && <button type="button" className="btn edit-btn">unflag</button>}
-            {!flagged && <button type="button" className="btn delete-btn">flag</button>}
+            {flagged && (
+              <button type="button" className="btn edit-btn">
+                unflag
+              </button>
+            )}
+            {!flagged && (
+              <button type="button" className="btn delete-btn">
+                flag
+              </button>
+            )}
             {status !== "published" && (
               <button type="button" className="btn publish-btn">
                 publish

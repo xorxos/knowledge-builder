@@ -24,6 +24,7 @@ import {
   CLEAR_FILTERS,
   CHANGE_STATUS,
   CHANGE_SEARCH_FLAG,
+  SELECT_TAG,
 } from "./actions";
 
 const token = localStorage.getItem("token");
@@ -62,7 +63,7 @@ const initialState = {
   searchCount: 0,
   searchFlag: false,
   searchStatus: "all",
-  searchTypeOptions: ["title", "tag", "category"],
+  searchTypeOptions: ["title", "tag"],
   searchType: "title",
   sort: "category",
   sortOptions: ["latest", "oldest", "tag", "category", "a-z", "z-a"],
@@ -255,6 +256,10 @@ const AppProvider = ({ children }) => {
     dispatch({ type: CHANGE_SEARCH_FLAG });
   };
 
+  const selectTag = (tag) => {
+    dispatch({ type: SELECT_TAG, payload: { tag } });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -273,6 +278,7 @@ const AppProvider = ({ children }) => {
         changeStatus,
         changeSearchType,
         changeSearchFlag,
+        selectTag,
       }}
     >
       {children}

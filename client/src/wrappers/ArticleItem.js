@@ -86,6 +86,7 @@ const Wrapper = styled.article`
     border-radius: var(--borderRadius);
     color: var(--white);
     padding: 0 0.5rem;
+    cursor: pointer;
   }
   .edit-btn,
   .delete-btn {
