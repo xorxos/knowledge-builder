@@ -4,6 +4,7 @@ import { FaFlag } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Wrapper from "../wrappers/ArticleItem";
 import ArticleInfo from "./ArticleInfo";
+import { Tags } from "./";
 
 const ArticleItem = ({ _id, updatedAt, title, status, tags, flagged }) => {
   let date = moment(updatedAt);
@@ -16,8 +17,13 @@ const ArticleItem = ({ _id, updatedAt, title, status, tags, flagged }) => {
           <h5>{title}</h5>
           <ArticleInfo text={"Last modified: " + date} />
         </div>
-        {flagged && <div className="status flagged"><FaFlag /></div>}
+        {flagged && (
+          <div className="status flagged">
+            <FaFlag />
+          </div>
+        )}
       </header>
+      {tags.length > 0 && <Tags tags={tags} />}
       <div className="content">
         <footer>
           <div className="actions">

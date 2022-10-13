@@ -4,7 +4,7 @@ const Wrapper = styled.article`
   background: var(--white);
   border-radius: var(--borderRadius);
   display: grid;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: 1fr auto auto;
   box-shadow: var(--shadow-2);
 
   .actions {
@@ -13,7 +13,6 @@ const Wrapper = styled.article`
 
   header {
     padding: 1rem 1.5rem;
-    border-bottom: 1px solid var(--grey-100);
     display: flex;
     grid-template-columns: auto 1fr;
     align-items: center;
@@ -51,6 +50,7 @@ const Wrapper = styled.article`
   }
   .content {
     padding: 1rem 1.5rem;
+    border-top: 1px solid var(--grey-100);
   }
   .content-center {
     display: grid;
@@ -70,6 +70,19 @@ const Wrapper = styled.article`
     text-align: center;
     padding: 0 0.5rem;
     height: 30px;
+  }
+  .tags {
+    display: flex;
+    flex-basis: 100%;
+    padding: 0rem 1.5rem 1rem 1.5rem;
+    text-transform: capitalize;
+  }
+  .tag {
+    margin-left: 0.5rem;
+    background: var(--primary-700);
+    border-radius: var(--borderRadius);
+    color: var(--white);
+    padding: 0 0.5rem;
   }
   .edit-btn,
   .delete-btn {
