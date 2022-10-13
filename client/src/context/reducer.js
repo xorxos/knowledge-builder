@@ -178,18 +178,28 @@ const reducer = (state, action) => {
         return {
           ...state,
           searchStatus: "all",
+          searchFlag: false,
         };
       }
       return {
         ...state,
         searchStatus: action.payload.newStatus,
+        searchFlag: false,
       };
 
     case CHANGE_SEARCH_FLAG:
+      if (!state.searchFlag) {
+        return {
+          ...state,
+          searchFlag: !state.searchFlag,
+          searchStatus: "none",
+        };
+      }
       return {
         ...state,
         searchFlag: !state.searchFlag,
-      }
+        searchStatus: "all",
+      };
 
     case CHANGE_SEARCH_TYPE:
       return {

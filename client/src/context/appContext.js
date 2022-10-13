@@ -196,14 +196,18 @@ const AppProvider = ({ children }) => {
   const getArticles = async () => {
     const { page, search, searchStatus, searchType, sort, searchFlag } = state;
 
-    let url = `/articles?page=${page}&status=${searchStatus}&searchType=${searchType}`;
+    let url = `/articles?page=${page}&searchType=${searchType}`;
+
+    if (searchStatus !== "none") {
+      url = url + `&status=${searchStatus}`;
+    }
 
     if (search) {
       url = url + `&search=${search}`;
     }
 
     if (searchFlag) {
-      url = url + `&flagged=true`
+      url = url + `&flagged=true`;
     }
 
     dispatch({ type: GET_ARTICLES_BEGIN });
