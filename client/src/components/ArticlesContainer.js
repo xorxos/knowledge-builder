@@ -23,7 +23,6 @@ const ArticlesContainer = () => {
       </h5>
       <div className="articles">
         {articles.map((item, index) => {
-          if (index === 1) console.log(item);
           return <ArticleItem key={index} {...item} />;
         })}
       </div>
