@@ -50,12 +50,12 @@ const Register = () => {
       !password ||
       (!isMember && (!firstName || !lastName || !confirmPassword))
     ) {
-      displayAlert("Please provide all values!");
+      displayAlert("Please provide all values!", "danger");
       return;
     }
 
     if (!isMember && password !== confirmPassword) {
-      displayAlert("Passwords do not match!");
+      displayAlert("Passwords do not match!", "danger");
       return;
     }
 

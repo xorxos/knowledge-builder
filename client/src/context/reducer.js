@@ -1,5 +1,3 @@
-import { initialState } from "./appContext";
-
 import {
   DISPLAY_ALERT,
   CLEAR_ALERT,
@@ -31,10 +29,23 @@ import {
   TOGGLE_PUBLISH_SUCCESS,
 } from "./actions";
 
+import { initialState } from "./appContext";
+
 const reducer = (state, action) => {
   switch (action.type) {
     case DISPLAY_ALERT:
-      if (action.payload && action.payload.customMessage) {
+      if (
+        action.payload &&
+        action.payload.customMessage &&
+        action.payload.type
+      ) {
+        return {
+          ...state,
+          showAlert: true,
+          alertType: action.payload.type,
+          alertText: action.payload.customMessage,
+        };
+      } else if (action.payload && action.payload.customMessage) {
         return {
           ...state,
           showAlert: true,
@@ -161,12 +172,9 @@ const reducer = (state, action) => {
       };
 
     case CLEAR_VALUES:
-      const initialState = {
-        isEditing: false,
-      };
       return {
         ...state,
-        ...initialState,
+        isEditing: false,
       };
 
     case CLEAR_FILTERS:

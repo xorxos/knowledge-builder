@@ -34,14 +34,14 @@ const Profile = () => {
 
     // check for something in all fields
     if (!firstName || !lastName || !email || !password || !confirmPassword) {
-      displayAlert();
+      displayAlert("Please provide all values!", "danger");
       return;
     }
 
     // confirm passwords match
     // only if editing password because dummy values are in state if not
     if (isEditingPassword && password !== confirmPassword) {
-      displayAlert("Passwords do not match!");
+      displayAlert("Passwords do not match!", "danger");
       return;
     }
 
