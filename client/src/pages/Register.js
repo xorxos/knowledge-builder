@@ -17,9 +17,15 @@ const Register = () => {
   const navigate = useNavigate();
   const [values, setValues] = useState(initialState);
 
-  // add user back when fixed
-  const { user, isLoading, showAlert, displayAlert, registerUser, loginUser } =
-    useAppContext();
+  const {
+    user,
+    isLoading,
+    showAlert,
+    displayAlert,
+    registerUser,
+    loginUser,
+    clearAlert,
+  } = useAppContext();
 
   const toggleMember = () => {
     if (!values.isMember) {
@@ -76,6 +82,7 @@ const Register = () => {
     if (user) {
       setTimeout(() => {
         navigate("/dashboard");
+        clearAlert();
       }, 3000);
     }
   }, [user, navigate]);
@@ -83,61 +90,61 @@ const Register = () => {
   useScrollToAlert();
 
   return (
-      <Wrapper className="full-page">
-        <form className="form" onSubmit={onSubmit}>
-          <Logo />
-          <h3>{values.isMember ? "Login" : "Register"}</h3>
-          {showAlert && <Alert />}
-          {!values.isMember && (
-            <FormRow
-              type="text"
-              labelText="First Name"
-              name="firstName"
-              value={values.firstName}
-              handleChange={handleChange}
-            />
-          )}
-          {!values.isMember && (
-            <FormRow
-              type="text"
-              labelText="Last Name"
-              name="lastName"
-              value={values.lastName}
-              handleChange={handleChange}
-            />
-          )}
+    <Wrapper className="full-page">
+      <form className="form" onSubmit={onSubmit}>
+        <Logo />
+        <h3>{values.isMember ? "Login" : "Register"}</h3>
+        {showAlert && <Alert />}
+        {!values.isMember && (
           <FormRow
-            type="email"
-            name="email"
-            value={values.email}
+            type="text"
+            labelText="First Name"
+            name="firstName"
+            value={values.firstName}
             handleChange={handleChange}
           />
+        )}
+        {!values.isMember && (
+          <FormRow
+            type="text"
+            labelText="Last Name"
+            name="lastName"
+            value={values.lastName}
+            handleChange={handleChange}
+          />
+        )}
+        <FormRow
+          type="email"
+          name="email"
+          value={values.email}
+          handleChange={handleChange}
+        />
+        <FormRow
+          type="password"
+          name="password"
+          value={values.password}
+          handleChange={handleChange}
+        />
+        {!values.isMember && (
           <FormRow
             type="password"
-            name="password"
-            value={values.password}
+            labelText="Confirm Password"
+            name="confirmPassword"
+            value={values.confirmPassword}
             handleChange={handleChange}
           />
-          {!values.isMember && (
-            <FormRow
-              type="password"
-              labelText="Confirm Password"
-              name="confirmPassword"
-              value={values.confirmPassword}
-              handleChange={handleChange}
-            />
-          )}
-          <button type="submit" className="btn btn-block" disabled={isLoading}>
-            Submit
+        )}
+        <button type="submit" className="btn btn-block" disabled={isLoading}>
+          Submit
+        </button>
+        <p>
+          {values.isMember ? "Not a member yet?" : "Already a member?"}
+          <button type="button" onClick={toggleMember} className="member-btn">
+            {values.isMember ? "Register" : "Login"}
           </button>
-          <p>
-            {values.isMember ? "Not a member yet?" : "Already a member?"}
-            <button type="button" onClick={toggleMember} className="member-btn">
-              {values.isMember ? "Register" : "Login"}
-            </button>
-          </p>
-        </form>
-      </Wrapper>
+        </p>
+      </form>
+    </Wrapper>
   );
 };
 export default Register;
