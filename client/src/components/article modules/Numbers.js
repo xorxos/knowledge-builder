@@ -1,6 +1,16 @@
-const Numbers = () => {
+import EditButtons from "./EditButtons";
+
+const Numbers = ({ list }) => {
+  const { items } = list;
   return (
-    <div>Numbers</div>
-  )
-}
-export default Numbers
+    <ol>
+      {items.map((item, index) => (
+        <li key={index}>
+          {item}
+          <EditButtons />
+        </li>
+      ))}
+    </ol>
+  );
+};
+export default Numbers;

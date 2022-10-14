@@ -1,11 +1,11 @@
 import EditButtons from "./EditButtons";
 
-const Paragraph = ({ text }) => {
+const LargeHeader = ({ text }) => {
   return (
-    <p>
+    <h3>
       {text}
       <EditButtons />
-    </p>
+    </h3>
   );
 };
-export default Paragraph;
+export default LargeHeader;
