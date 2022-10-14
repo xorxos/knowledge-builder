@@ -63,7 +63,7 @@ const Wrapper = styled.div`
   }
   .btn-container {
     font-size: 1.3rem;
-    display: inline-block;
+    display: none;
     text-align: center;
   }
   .edit-icon {
@@ -76,12 +76,12 @@ const Wrapper = styled.div`
   h3,
   h4,
   p,
-  ol,
-  ul,
   li,
   figure {
     &:hover {
       .btn-container {
+        display: flex;
+        align-items: center;
       }
     }
   }
