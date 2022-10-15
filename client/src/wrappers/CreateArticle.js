@@ -5,7 +5,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   box-shadow: var(--shadow-2);
-  padding: 4rem;
+  padding: 4rem 4rem 4rem 3rem;
   margin: 0 auto;
   font-family: Georgia, sans-serif;
   max-width: 1000px;
@@ -53,18 +53,22 @@ const Wrapper = styled.div`
   ol,
   ul {
     margin-bottom: 12px;
-    padding-left: 2rem;
+    padding-left: 3rem;
     font-size: 1.25rem;
     line-height: 1.7em;
     margin-top: 0;
+    border-left: 5px solid transparent;
     li {
       line-height: 1.7em;
+      cursor: pointer;
+    }
+    &:hover {
+      border-left: 5px solid var(--primary-500);
     }
   }
   .btn-container {
     font-size: 1.3rem;
-    display: none;
-    text-align: center;
+    visibility: hidden;
   }
   .edit-icon {
     margin-right: 0.5rem;
@@ -76,13 +80,13 @@ const Wrapper = styled.div`
   h3,
   h4,
   p,
-  li,
   figure {
+    border-left: 5px solid transparent;
+    padding-left: 1rem;
+    cursor: pointer;
+
     &:hover {
-      .btn-container {
-        display: flex;
-        align-items: center;
-      }
+      border-left: 5px solid var(--primary-500);
     }
   }
 `;
