@@ -127,18 +127,11 @@ const CreateArticle = () => {
         <Paragraph text="A too long list of items:" />
         <Numbers
           list={{
-            items: [
-              "Item 1",
-              "Item 2",
-              "Item 3",
-              "Item 4",
-              "Item 5",
-
-            ],
+            items: ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"],
           }}
         />
         <LargeHeader text="An example of an image" />
-        <Image img={img} caption="A rainy street in japan"/>
+        <Image img={img} caption="A rainy street in japan" />
       </div>
     </Wrapper>
   );

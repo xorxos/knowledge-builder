@@ -4,7 +4,6 @@ const Paragraph = ({ text }) => {
   return (
     <p>
       {text}
-      <EditButtons />
     </p>
   );
 };
