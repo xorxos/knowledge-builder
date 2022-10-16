@@ -4,11 +4,12 @@ import Code from "./Code";
 import Image from "./Image";
 import Numbers from "./Numbers";
 import Paragraph from "./Paragraph";
-import Tags from "./Tags";
 import LargeHeader from "./LargeHeader";
 import SmallHeader from "./SmallHeader";
 import Title from "./Title";
 import EditButtons from "./EditButtons";
+import ArticleModule from "./ArticleModule";
+import SaveButtons from "./SaveButtons";
 
 export {
   AlertModule,
@@ -20,6 +21,7 @@ export {
   Title,
   LargeHeader,
   SmallHeader,
-  Tags,
   EditButtons,
+  ArticleModule,
+  SaveButtons,
 };

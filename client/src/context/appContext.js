@@ -46,6 +46,17 @@ const initialState = {
   showSidebar: false,
   isEditing: false,
   editArticleId: "",
+  article: null,
+  title: "",
+  largeHeader: "",
+  smallHeader: "",
+  paragraph: "",
+  bullets: [],
+  numbers: [],
+  code: "",
+  imagePath: "",
+  caption: "",
+  alert: "",
   articleModuleOptions: [
     "header",
     "subheader",
@@ -109,9 +120,9 @@ const AppProvider = ({ children }) => {
     }
   );
 
-  const displayAlert = (customMessage) => {
-    if (customMessage) {
-      dispatch({ type: DISPLAY_ALERT, payload: { customMessage } });
+  const displayAlert = (customMessage, type) => {
+    if (customMessage && type) {
+      dispatch({ type: DISPLAY_ALERT, payload: { customMessage, type } });
       clearAlert();
       return;
     }

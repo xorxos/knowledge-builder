@@ -12,17 +12,16 @@ const ArticleSchema = new mongoose.Schema(
         moduleType: {
           type: String,
           enum: [
-            "header",
-            "subheader",
+            "largeHeader",
+            "smallHeader",
             "paragraph",
-            "bullet list",
-            "numbered list",
-            "code block",
+            "bulletList",
+            "numberedList",
+            "codeBlock",
             "image",
-            "text-image split",
             "alert",
           ],
-          default: "header",
+          default: "largeHeader",
         },
         position: {
           type: Number,

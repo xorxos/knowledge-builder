@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   background: var(--white);
+  min-height: 82vh;
   display: flex;
   flex-direction: column;
   box-shadow: var(--shadow-2);
@@ -10,16 +11,50 @@ const Wrapper = styled.div`
   font-family: Georgia, sans-serif;
   max-width: 1000px;
   .article-content {
-    max-width: 800px;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .title {
+    font-size: 2.441rem;
+    width: 100%;
+    text-align: left;
+    flex: 1;
+    padding-left: calc(1rem + 5px);
+    font-family: "Universal Sans", sans-serif;
+    line-height: 1.3;
+  }
+  .save-btn,
+  .cancel-btn {
+    letter-spacing: var(--letterSpacing);
+    cursor: pointer;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+  }
+  .save-btn {
+    color: var(--green-dark);
+    background: var(--green-light);
+    margin-right: 0.5rem;
+  }
+  .cancel-btn {
+    color: var(--red-dark);
+    background: var(--red-light);
+    margin-right: 0.5rem;
+  }
+  .save-buttons {
+    margin-top: 1rem;
+    display: flex;
+    flex: 1;
   }
   h2,
   h3,
   h4 {
     font-family: "Universal Sans", sans-serif;
-    max-width: 45em;
   }
-  h2 {
+  h2,
+  .title {
     margin-top: 3.75rem;
     text-transform: none;
     &:first-child {
