@@ -11,7 +11,6 @@ const Tags = ({ tags }) => {
           {tag}
         </div>
       ))}
-      {(!tags || tags.length === 0) && "None"}
     </div>
   );
 };
