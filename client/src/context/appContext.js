@@ -31,6 +31,10 @@ import {
   TOGGLE_FLAG_SUCCESS,
   TOGGLE_PUBLISH_BEGIN,
   TOGGLE_PUBLISH_SUCCESS,
+  SET_EDIT_ARTICLE,
+  EDIT_ARTICLE_BEGIN,
+  EDIT_ARTICLE_SUCCESS,
+  EDIT_ARTICLE_ERROR,
 } from "./actions";
 
 const token = localStorage.getItem("token");
@@ -212,7 +216,7 @@ const AppProvider = ({ children }) => {
   };
 
   const getArticles = async () => {
-    const { page, search, searchStatus, searchType, sort, searchFlag } = state;
+    const { page, search, searchStatus, searchType, searchFlag } = state;
 
     let url = `/articles?page=${page}&searchType=${searchType}`;
 
@@ -249,12 +253,46 @@ const AppProvider = ({ children }) => {
     clearAlert();
   };
 
+  const editArticle = async ({ article }) => {
+    dispatch({ type: EDIT_ARTICLE_BEGIN });
+
+    if (state.isEditing) {
+      try {
+        console.log(state.article);
+        const { data } = await authFetch.patch(
+          `/articles/${state.editArticleId}`,
+          {
+            title: article.title,
+            modules: article.modules,
+            status: article.status,
+            flagged: article.flagged,
+            tags: article.tags,
+          }
+        );
+        const { updatedArticle } = data;
+        dispatch({
+          type: EDIT_ARTICLE_SUCCESS,
+          payload: { updatedArticle },
+        });
+        displayAlert();
+      } catch (error) {
+        console.log(error);
+        dispatch({
+          type: EDIT_ARTICLE_ERROR,
+          payload: { msg: error.response.msg },
+        });
+      }
+    }
+  };
+
   const deleteArticle = async (articleId) => {
     dispatch({ type: DELETE_ARTICLE_BEGIN });
 
     try {
       await authFetch.delete(`/articles/${articleId}`);
-      dispatch({ type: DELETE_ARTICLE_SUCCESS });
+      dispatch({
+        type: DELETE_ARTICLE_SUCCESS,
+      });
       displayAlert();
       getArticles();
     } catch (error) {
@@ -326,6 +364,10 @@ const AppProvider = ({ children }) => {
     dispatch({ type: SELECT_TAG, payload: { tag } });
   };
 
+  const setEditArticle = (id) => {
+    dispatch({ type: SET_EDIT_ARTICLE, payload: { id } });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -348,6 +390,8 @@ const AppProvider = ({ children }) => {
         deleteArticle,
         toggleFlag,
         togglePublish,
+        setEditArticle,
+        editArticle,
       }}
     >
       {children}

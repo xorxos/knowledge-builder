@@ -1,29 +1,37 @@
 import { useState } from "react";
+import { EDIT_ARTICLE_BEGIN } from "../../context/actions";
 import { useAppContext } from "../../context/appContext";
 import { EditButtons, SaveButtons } from "./";
 
 const Title = () => {
-  const { title, handleChange, displayAlert } = useAppContext();
-  const [isEditingTitle, setIsEditingTitle] = useState(true);
-  const [newTitle, setNewTitle] = useState(title);
+  const { title, handleChange, displayAlert, isEditing, article, editArticle } =
+    useAppContext();
+  const [isEditingTitle, setIsEditingTitle] = useState(
+    isEditing ? false : true
+  );
 
   const handleSave = () => {
-    if (newTitle === "") {
+    if (isEditing && title === "") {
       displayAlert("Title cannot be empty!", "danger");
       return;
     }
-    // Once changeTitle is made in appcontext
-    // changeTitle(newTitle)
+    if (title === "") {
+      displayAlert("Title cannot be empty!", "danger");
+      return;
+    }
+
+    article.title = title;
+    editArticle({ article });
     setIsEditingTitle((prev) => !prev);
-    setNewTitle(title);
-    console.log("new: " + newTitle);
-    console.log("title: " + title);
   };
 
   const handleCancel = () => {
-    console.log("canceling");
-    if (title !== "") {
-      setNewTitle(title);
+    if (isEditing) {
+      handleChange({ name: "title", value: article.title });
+      setIsEditingTitle((prev) => !prev);
+      return;
+    }
+    if (title === "") {
       setIsEditingTitle((prev) => !prev);
       return;
     }
@@ -31,7 +39,7 @@ const Title = () => {
   };
 
   const changeHandler = (e) => {
-    setNewTitle(e.target.value);
+    handleChange({ name: "title", value: e.target.value });
   };
 
   if (isEditingTitle)
@@ -41,10 +49,10 @@ const Title = () => {
           className="title"
           name="title"
           placeholder="Please enter a title here"
-          value={newTitle}
+          value={title}
           onChange={(e) => changeHandler(e)}
         />
-        <SaveButtons title={title} save={handleSave} cancel={handleCancel} />
+        <SaveButtons save={handleSave} cancel={handleCancel} />
       </>
     );
   else

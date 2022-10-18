@@ -1,10 +1,9 @@
 import EditButtons from "./EditButtons";
 
 const Bullets = ({ list }) => {
-  const { items } = list;
   return (
     <ul>
-      {items.map((item, index) => (
+      {list.map((item, index) => (
         <li key={index}>
           {item} <EditButtons />
         </li>

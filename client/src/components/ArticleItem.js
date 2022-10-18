@@ -7,7 +7,8 @@ import ArticleInfo from "./ArticleInfo";
 import { Tags } from "./";
 
 const ArticleItem = ({ _id, updatedAt, title, status, tags, flagged }) => {
-  const { deleteArticle, toggleFlag, togglePublish } = useAppContext();
+  const { deleteArticle, toggleFlag, togglePublish, setEditArticle } =
+    useAppContext();
 
   let date = moment(updatedAt);
   date = date.format("MMM Do, YYYY");
@@ -32,7 +33,7 @@ const ArticleItem = ({ _id, updatedAt, title, status, tags, flagged }) => {
             <Link
               to="/dashboard/add-article"
               className="btn edit-btn"
-              onClick={() => console.log("edit article: " + _id)}
+              onClick={() => setEditArticle(_id)}
             >
               Edit
             </Link>

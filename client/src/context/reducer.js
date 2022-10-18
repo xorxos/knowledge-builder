@@ -27,6 +27,10 @@ import {
   TOGGLE_FLAG_SUCCESS,
   TOGGLE_PUBLISH_BEGIN,
   TOGGLE_PUBLISH_SUCCESS,
+  SET_EDIT_ARTICLE,
+  EDIT_ARTICLE_BEGIN,
+  EDIT_ARTICLE_SUCCESS,
+  EDIT_ARTICLE_ERROR,
 } from "./actions";
 
 import { initialState } from "./appContext";
@@ -56,7 +60,6 @@ const reducer = (state, action) => {
       return {
         ...state,
         showAlert: true,
-        alertType: "danger",
       };
 
     case CLEAR_ALERT:
@@ -227,6 +230,32 @@ const reducer = (state, action) => {
         search: action.payload.tag,
       };
 
+    case EDIT_ARTICLE_BEGIN:
+      return {
+        ...state,
+        isLoading: true,
+      };
+
+    case EDIT_ARTICLE_SUCCESS:
+      return {
+        ...state,
+        article: action.payload.updatedArticle,
+        title: action.payload.updatedArticle.title,
+        isLoading: false,
+        showAlert: true,
+        alertType: "success",
+        alertText: "Article Updated!",
+      };
+
+    case EDIT_ARTICLE_ERROR:
+      return {
+        ...state,
+        isLoading: false,
+        showAlert: true,
+        alertType: "danger",
+        alertText: action.payload.msg,
+      };
+
     case DELETE_ARTICLE_BEGIN:
       return {
         ...state,
@@ -265,6 +294,19 @@ const reducer = (state, action) => {
         ...state,
         isLoading: false,
         alertType: "success",
+      };
+
+    case SET_EDIT_ARTICLE:
+      const article = state.articles.find(
+        (article) => article._id === action.payload.id
+      );
+
+      return {
+        ...state,
+        isEditing: true,
+        editArticleId: article._id,
+        article: article,
+        title: article.title,
       };
 
     default:
