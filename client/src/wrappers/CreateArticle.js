@@ -69,7 +69,8 @@ const Wrapper = styled.div`
     font-size: 1.25rem;
     font-weight: 700;
   }
-  p {
+  p,
+  .paragraph {
     margin-top: 0;
     max-width: 45em;
     font-size: 1.25rem;

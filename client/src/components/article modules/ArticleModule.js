@@ -20,7 +20,7 @@ const ArticleModule = ({ module }) => {
       return <SmallHeader text={module.mainText} module={module} />;
 
     case "paragraph":
-      return <Paragraph text={module.mainText} />;
+      return <Paragraph text={module.mainText} module={module} />;
 
     case "numberedList":
       return <Numbers list={module.listText} />;
