@@ -31,6 +31,9 @@ import {
   EDIT_ARTICLE_BEGIN,
   EDIT_ARTICLE_SUCCESS,
   EDIT_ARTICLE_ERROR,
+  CREATE_ARTICLE_BEGIN,
+  CREATE_ARTICLE_SUCCESS,
+  CREATE_ARTICLE_ERROR,
 } from "./actions";
 
 import { initialState } from "./appContext";
@@ -166,6 +169,30 @@ const reducer = (state, action) => {
         stats: action.payload.stats,
         totalArticles: action.payload.totalArticles,
         count: action.payload.count,
+      };
+
+    case CREATE_ARTICLE_BEGIN:
+      return {
+        ...state,
+        isLoading: true,
+      };
+
+    case CREATE_ARTICLE_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        isEditing: true,
+        editArticleId: action.payload.id,
+        article: action.payload.article,
+      };
+
+    case CREATE_ARTICLE_ERROR:
+      return {
+        ...state,
+        isLoading: false,
+        showAlert: true,
+        alertType: "danger",
+        alertText: action.payload.msg,
       };
 
     case HANDLE_CHANGE:

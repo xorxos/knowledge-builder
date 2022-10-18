@@ -1,7 +1,7 @@
 import { useAppContext } from "../context/appContext";
 
-const Alert = ({absolute}) => {
+const Alert = ({fixed}) => {
   const {alertType, alertText} = useAppContext()
-  return <div className={`alert alert-${alertType} ${absolute && "absolute"}`} id="alert">{alertText}</div>;
+  return <div className={`alert alert-${alertType} ${fixed && "fixed-top"}`} id="alert">{alertText}</div>;
 };
 export default Alert;

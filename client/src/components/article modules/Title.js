@@ -1,45 +1,38 @@
 import { useState } from "react";
-import { EDIT_ARTICLE_BEGIN } from "../../context/actions";
 import { useAppContext } from "../../context/appContext";
 import { EditButtons, SaveButtons } from "./";
 
-const Title = () => {
-  const { title, handleChange, displayAlert, isEditing, article, editArticle } =
+const Title = ({ text }) => {
+  const { displayAlert, isEditing, article, editArticle, createArticle } =
     useAppContext();
+  const [title, setTitle] = useState(text || "");
   const [isEditingTitle, setIsEditingTitle] = useState(
     isEditing ? false : true
   );
 
   const handleSave = () => {
-    if (isEditing && title === "") {
-      displayAlert("Title cannot be empty!", "danger");
-      return;
-    }
     if (title === "") {
       displayAlert("Title cannot be empty!", "danger");
       return;
     }
 
-    article.title = title;
-    editArticle({ article });
+    if (isEditing) {
+      article.title = title;
+      editArticle({ article });
+    } else {
+      createArticle(title);
+    }
+
     setIsEditingTitle((prev) => !prev);
   };
 
   const handleCancel = () => {
-    if (isEditing) {
-      handleChange({ name: "title", value: article.title });
-      setIsEditingTitle((prev) => !prev);
+    if (isEditing && article.title === "") {
+      displayAlert("Title cannot be empty!", "danger");
       return;
     }
-    if (title === "") {
-      setIsEditingTitle((prev) => !prev);
-      return;
-    }
-    displayAlert("Title cannot be empty!", "danger");
-  };
-
-  const changeHandler = (e) => {
-    handleChange({ name: "title", value: e.target.value });
+    setTitle(article.title);
+    setIsEditingTitle((prev) => !prev);
   };
 
   if (isEditingTitle)
@@ -50,7 +43,7 @@ const Title = () => {
           name="title"
           placeholder="Please enter a title here"
           value={title}
-          onChange={(e) => changeHandler(e)}
+          onChange={(e) => setTitle(e.target.value)}
         />
         <SaveButtons save={handleSave} cancel={handleCancel} />
       </>

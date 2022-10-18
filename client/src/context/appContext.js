@@ -35,6 +35,9 @@ import {
   EDIT_ARTICLE_BEGIN,
   EDIT_ARTICLE_SUCCESS,
   EDIT_ARTICLE_ERROR,
+  CREATE_ARTICLE_BEGIN,
+  CREATE_ARTICLE_SUCCESS,
+  CREATE_ARTICLE_ERROR,
 } from "./actions";
 
 const token = localStorage.getItem("token");
@@ -50,17 +53,7 @@ const initialState = {
   showSidebar: false,
   isEditing: false,
   editArticleId: "",
-  article: null,
-  title: "",
-  largeHeader: "",
-  smallHeader: "",
-  paragraph: "",
-  bullets: [],
-  numbers: [],
-  code: "",
-  imagePath: "",
-  caption: "",
-  alert: "",
+  article: {},
   articleModuleOptions: [
     "header",
     "subheader",
@@ -69,7 +62,6 @@ const initialState = {
     "numbered list",
     "code block",
     "image",
-    "text-image split",
     "alert",
   ],
   articleModuleType: "header",
@@ -253,6 +245,24 @@ const AppProvider = ({ children }) => {
     clearAlert();
   };
 
+  const createArticle = async (title) => {
+    dispatch({ type: CREATE_ARTICLE_BEGIN });
+
+    try {
+      const { data } = await authFetch.post("/articles", {
+        title,
+      });
+      const { article } = data;
+      dispatch({
+        type: CREATE_ARTICLE_SUCCESS,
+        payload: { id: article._id, article },
+      });
+      displayAlert("Article Created!", "success");
+    } catch (error) {
+      dispatch({ type: CREATE_ARTICLE_ERROR });
+    }
+  };
+
   const editArticle = async ({ article }) => {
     dispatch({ type: EDIT_ARTICLE_BEGIN });
 
@@ -307,7 +317,7 @@ const AppProvider = ({ children }) => {
     try {
       await authFetch.patch(`/articles/${articleId}`, { flagged: !flag });
       dispatch({ type: TOGGLE_FLAG_SUCCESS });
-      displayAlert("Changes Saved Successfully!");
+      displayAlert("Changes Saved Successfully!", "success");
       getArticles();
     } catch (error) {
       logoutUser();
@@ -328,7 +338,7 @@ const AppProvider = ({ children }) => {
     try {
       await authFetch.patch(`/articles/${articleId}`, { status: newStatus });
       dispatch({ type: TOGGLE_PUBLISH_SUCCESS });
-      displayAlert("Changes Saved Successfully!");
+      displayAlert("Changes Saved Successfully!", "success");
       getArticles();
     } catch (error) {
       logoutUser();
@@ -392,6 +402,7 @@ const AppProvider = ({ children }) => {
         togglePublish,
         setEditArticle,
         editArticle,
+        createArticle,
       }}
     >
       {children}

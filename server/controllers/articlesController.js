@@ -13,7 +13,7 @@ const createArticle = async (req, res) => {
 
   // force lowercase on tags
   // so we don't need to use regex when searching later
-  if (tags.length > 0) {
+  if (tags && tags.length > 0) {
     const newTags = tags.map((item) => item.toLowerCase());
     req.body.tags = newTags;
   }

@@ -31,7 +31,6 @@ const CreateArticle = () => {
           <ArticleModule
             module={{
               moduleType: "title",
-              title: "",
             }}
           />
         </div>

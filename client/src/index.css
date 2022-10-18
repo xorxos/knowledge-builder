@@ -322,8 +322,8 @@ button:disabled {
   color: var(--primary-500);
 }
 
-.absolute {
-  position: absolute;
+.fixed-top {
+  position: fixed;
   top: 6.5rem;
   left: 50%;
   z-index: 2;

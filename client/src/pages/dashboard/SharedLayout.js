@@ -15,7 +15,7 @@ const SharedLayout = () => {
         <div>
           <Navbar />
           <div className="dashboard-page">
-            {showAlert && <Alert absolute />}
+            {showAlert && <Alert fixed />}
             <Outlet />
           </div>
         </div>
