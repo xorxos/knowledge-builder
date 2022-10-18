@@ -1,11 +1,47 @@
+import { useAppContext } from "../../context/appContext";
+import { useState } from "react";
 import EditButtons from "./EditButtons";
+import SaveButtons from "./SaveButtons";
 
-const SmallHeader = ({ text }) => {
-  return (
-    <h4>
-      {text}
-      <EditButtons />
-    </h4>
-  );
+const SmallHeader = ({ text, module }) => {
+  const { displayAlert, article, editArticle } = useAppContext();
+  const [header, setHeader] = useState(text || "");
+  const [isEditingHeader, setIsEditingHeader] = useState(false);
+
+  const handleSave = () => {
+    if (header === "") {
+      displayAlert("Header cannot be empty!", "danger");
+      return;
+    }
+
+    article.modules[module.position - 1].mainText = header;
+    editArticle({ article });
+    setIsEditingHeader((prev) => !prev);
+  };
+
+  const handleCancel = () => {
+    setHeader(module.mainText);
+    setIsEditingHeader((prev) => !prev);
+  };
+
+  if (isEditingHeader)
+    return (
+      <>
+        <textarea
+          className="smallHeader"
+          placeholder="Type some text for your small header here"
+          value={header}
+          onChange={(e) => setHeader(e.target.value)}
+        />
+        <SaveButtons save={handleSave} cancel={handleCancel} />
+      </>
+    );
+  else
+    return (
+      <h4 onClick={() => setIsEditingHeader((prev) => !prev)}>
+        {text}
+        <EditButtons />
+      </h4>
+    );
 };
 export default SmallHeader;

@@ -14,15 +14,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
   }
-  .title {
-    font-size: 2.441rem;
-    width: 100%;
-    text-align: left;
-    flex: 1;
-    padding-left: calc(1rem + 5px);
-    font-family: "Universal Sans", sans-serif;
-    line-height: 1.3;
-  }
+
   .save-btn,
   .cancel-btn {
     letter-spacing: var(--letterSpacing);
@@ -45,12 +37,15 @@ const Wrapper = styled.div`
   }
   .save-buttons {
     margin-top: 1rem;
+    margin-bottom: 1rem;
     display: flex;
     flex: 1;
   }
   h2,
   h3,
-  h4 {
+  h4,
+  .largeHeader,
+  .smallHeader {
     font-family: "Universal Sans", sans-serif;
   }
   h2,
@@ -61,11 +56,13 @@ const Wrapper = styled.div`
       margin-top: 0;
     }
   }
-  h3 {
+  h3,
+  .largeHeader {
     margin-top: 2.5rem;
     text-transform: none;
   }
-  h4 {
+  h4,
+  .smallHeader {
     margin-top: 2.5rem;
     text-transform: none;
     margin-bottom: 0.5rem;
@@ -123,6 +120,23 @@ const Wrapper = styled.div`
     &:hover {
       border-left: 5px solid var(--primary-500);
     }
+  }
+
+  .title {
+    font-size: 2.441rem;
+    width: 100%;
+    text-align: left;
+    flex: 1;
+    font-family: "Universal Sans", sans-serif;
+    line-height: 1.3;
+  }
+  .largeHeader {
+    font-size: 1.953rem;
+    line-height: 1.3;
+    letter-spacing: var(--letterSpacing);
+  }
+  .smallHeader {
+    margin-bottom: 0;
   }
 `;
 

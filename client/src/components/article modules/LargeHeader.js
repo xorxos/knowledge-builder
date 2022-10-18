@@ -1,11 +1,47 @@
+import { useState } from "react";
+import { useAppContext } from "../../context/appContext";
 import EditButtons from "./EditButtons";
+import SaveButtons from "./SaveButtons";
 
-const LargeHeader = ({ text }) => {
-  return (
-    <h3>
-      {text}
-      <EditButtons />
-    </h3>
-  );
+const LargeHeader = ({ text, module }) => {
+  const { displayAlert, article, editArticle } = useAppContext();
+  const [header, setHeader] = useState(text || "");
+  const [isEditingHeader, setIsEditingHeader] = useState(false);
+
+  const handleSave = () => {
+    if (header === "") {
+      displayAlert("Header cannot be empty!", "danger");
+      return;
+    }
+
+    article.modules[module.position - 1].mainText = header;
+    editArticle({ article });
+    setIsEditingHeader((prev) => !prev);
+  };
+
+  const handleCancel = () => {
+    setHeader(module.mainText);
+    setIsEditingHeader((prev) => !prev);
+  };
+
+  if (isEditingHeader)
+    return (
+      <>
+        <textarea
+          className="largeHeader"
+          placeholder="Type some text for your large header here"
+          value={header}
+          onChange={(e) => setHeader(e.target.value)}
+        />
+        <SaveButtons save={handleSave} cancel={handleCancel} />
+      </>
+    );
+  else
+    return (
+      <h3 onClick={() => setIsEditingHeader((prevState) => !prevState)}>
+        {text}
+        <EditButtons />
+      </h3>
+    );
 };
 export default LargeHeader;

@@ -11,13 +11,13 @@ import {
 const ArticleModule = ({ module }) => {
   switch (module.moduleType) {
     case "title":
-      return <Title text={module.title}/>;
+      return <Title text={module.title} />;
 
     case "largeHeader":
-      return <LargeHeader text={module.mainText} />;
+      return <LargeHeader text={module.mainText} module={module} />;
 
     case "smallHeader":
-      return <SmallHeader text={module.mainText} />;
+      return <SmallHeader text={module.mainText} module={module} />;
 
     case "paragraph":
       return <Paragraph text={module.mainText} />;
