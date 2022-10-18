@@ -1,14 +1,72 @@
+import { useState } from "react";
+import { useAppContext } from "../../context/appContext";
 import EditButtons from "./EditButtons";
+import SaveButtons from "./SaveButtons";
 
-const Bullets = ({ list }) => {
-  return (
-    <ul>
-      {list.map((item, index) => (
-        <li key={index}>
-          {item} <EditButtons />
-        </li>
-      ))}
-    </ul>
-  );
+const Bullets = ({ list, module }) => {
+  const { displayAlert, article, editArticle } = useAppContext();
+
+  const combineList = (list) => {
+    if (list) {
+      const length = list.length;
+      let text = ``;
+
+      for (let index = 0; index < length; index++) {
+        if (index < length - 1) {
+          text += `${list[index]}\n`;
+        } else text += list[index];
+      }
+      return text;
+    }
+
+    return ``;
+  };
+
+  const [bulletText, setBulletText] = useState(combineList(list));
+
+  const [bulletList, setBulletList] = useState(list || []);
+  const [isEditingBullets, setIsEditingBullets] = useState(false);
+
+  const handleSave = () => {
+    if (bulletText === "") {
+      displayAlert("You must add at least one bullet point!", "danger");
+      return;
+    }
+    const newArray = bulletText.split(String.fromCharCode(10));
+    article.modules[module.position - 1].listText = newArray;
+    setBulletList(newArray);
+    editArticle({ article });
+    setIsEditingBullets((prev) => !prev);
+  };
+
+  const handleCancel = () => {
+    setBulletText(combineList(module.listText));
+    setBulletList(module.listText);
+    setIsEditingBullets((prev) => !prev);
+  };
+
+  if (isEditingBullets)
+    return (
+      <>
+        <textarea
+        rows="5"
+          className="bullets"
+          placeholder="Each new bullet should be on its own line"
+          value={bulletText}
+          onChange={(e) => setBulletText(e.target.value)}
+        />
+        <SaveButtons save={handleSave} cancel={handleCancel} />
+      </>
+    );
+  else
+    return (
+      <ul onClick={() => setIsEditingBullets((prev) => !prev)}>
+        {bulletList.map((item, index) => (
+          <li key={index}>
+            {item} <EditButtons />
+          </li>
+        ))}
+      </ul>
+    );
 };
 export default Bullets;

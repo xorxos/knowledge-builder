@@ -23,10 +23,10 @@ const ArticleModule = ({ module }) => {
       return <Paragraph text={module.mainText} module={module} />;
 
     case "numberedList":
-      return <Numbers list={module.listText} />;
+      return <Numbers list={module.listText} module={module} />;
 
     case "bulletList":
-      return <Bullets list={module.listText} />;
+      return <Bullets list={module.listText} module={module}/>;
 
     case "codeBlock":
       return;

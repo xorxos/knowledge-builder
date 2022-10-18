@@ -14,6 +14,10 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
   }
+  textarea {
+    min-width: 100%;
+    max-width: 100%;
+  }
 
   .save-btn,
   .cancel-btn {
@@ -138,6 +142,11 @@ const Wrapper = styled.div`
   }
   .smallHeader {
     margin-bottom: 0;
+  }
+  .bullets {
+    line-height: 1.7;
+    font-size: 1.25rem;
+    font-family: Georgia,sans-serif;
   }
 `;
 
