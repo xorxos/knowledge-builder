@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAppContext } from "../../context/appContext";
-import { EditButtons, SaveButtons } from "./";
+import { EditButtons, SaveButtons, AddButton } from "./";
 
 const Title = ({ text }) => {
   const { displayAlert, isEditing, article, editArticle, createArticle } =
@@ -50,10 +50,12 @@ const Title = ({ text }) => {
     );
   else
     return (
-      <h2 onClick={() => setIsEditingTitle((prevState) => !prevState)}>
-        {title}
-        <EditButtons />
-      </h2>
+      <>
+        <h2 onClick={() => setIsEditingTitle((prevState) => !prevState)}>
+          {title}
+        </h2>
+        <EditButtons title />
+      </>
     );
 };
 export default Title;

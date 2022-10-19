@@ -49,7 +49,7 @@ const Bullets = ({ list, module }) => {
     return (
       <>
         <textarea
-        rows="5"
+          rows="5"
           className="bullets"
           placeholder="Each new bullet should be on its own line"
           value={bulletText}
@@ -60,13 +60,14 @@ const Bullets = ({ list, module }) => {
     );
   else
     return (
-      <ul onClick={() => setIsEditingBullets((prev) => !prev)}>
-        {bulletList.map((item, index) => (
-          <li key={index}>
-            {item} <EditButtons />
-          </li>
-        ))}
-      </ul>
+      <>
+        <ul onClick={() => setIsEditingBullets((prev) => !prev)}>
+          {bulletList.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+        <EditButtons />
+      </>
     );
 };
 export default Bullets;

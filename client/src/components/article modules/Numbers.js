@@ -60,14 +60,14 @@ const Numbers = ({ list, module }) => {
     );
   else
     return (
-      <ol onClick={() => setIsEditingNumbers((prev) => !prev)}>
-        {numberList.map((item, index) => (
-          <li key={index}>
-            {item}
-            <EditButtons />
-          </li>
-        ))}
-      </ol>
+      <>
+        <ol onClick={() => setIsEditingNumbers((prev) => !prev)}>
+          {numberList.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ol>
+        <EditButtons />
+      </>
     );
 };
 export default Numbers;

@@ -38,10 +38,12 @@ const LargeHeader = ({ text, module }) => {
     );
   else
     return (
-      <h3 onClick={() => setIsEditingHeader((prevState) => !prevState)}>
-        {text}
+      <>
+        <h3 onClick={() => setIsEditingHeader((prevState) => !prevState)}>
+          {text}
+        </h3>
         <EditButtons />
-      </h3>
+      </>
     );
 };
 export default LargeHeader;

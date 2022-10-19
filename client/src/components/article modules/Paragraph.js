@@ -37,6 +37,11 @@ const Paragraph = ({ text, module }) => {
       </>
     );
 
-  return <p onClick={() => setIsEditingParagraph((prev) => !prev)}>{text}</p>;
+  return (
+    <>
+      <p onClick={() => setIsEditingParagraph((prev) => !prev)}>{text}</p>
+      <EditButtons />
+    </>
+  );
 };
 export default Paragraph;

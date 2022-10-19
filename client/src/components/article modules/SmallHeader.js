@@ -38,10 +38,10 @@ const SmallHeader = ({ text, module }) => {
     );
   else
     return (
-      <h4 onClick={() => setIsEditingHeader((prev) => !prev)}>
-        {text}
+      <>
+        <h4 onClick={() => setIsEditingHeader((prev) => !prev)}>{text}</h4>
         <EditButtons />
-      </h4>
+      </>
     );
 };
 export default SmallHeader;

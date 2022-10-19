@@ -1,13 +1,18 @@
-import { FaArrowDown, FaArrowUp, FaEdit, FaPlus } from "react-icons/fa";
+import { FaArrowDown, FaArrowUp, FaPlus } from "react-icons/fa";
 
-const EditButtons = () => {
-  return (
-    <span className="btn-container">
-      <FaEdit className="edit-icon" />
-      <FaArrowUp className="edit-icon" />
-      <FaArrowDown className="edit-icon" />
-      <FaPlus className="edit-icon" />
-    </span>
-  );
+const EditButtons = ({ title }) => {
+  if (title) {
+    return (
+      <span className="btn-container">
+        <FaPlus className="edit-icon" />
+      </span>
+    );
+  } else
+    return (
+      <span className="btn-container">
+        <FaArrowUp className="edit-icon" />
+        <FaArrowDown className="edit-icon" />
+      </span>
+    );
 };
 export default EditButtons;

@@ -10,6 +10,7 @@ import Title from "./Title";
 import EditButtons from "./EditButtons";
 import ArticleModule from "./ArticleModule";
 import SaveButtons from "./SaveButtons";
+import AddButton from "./AddButton";
 
 export {
   AlertModule,
@@ -24,4 +25,5 @@ export {
   EditButtons,
   ArticleModule,
   SaveButtons,
+  AddButton,
 };

@@ -18,7 +18,6 @@ const Wrapper = styled.div`
     min-width: 100%;
     max-width: 100%;
   }
-
   .save-btn,
   .cancel-btn {
     letter-spacing: var(--letterSpacing);
@@ -105,13 +104,23 @@ const Wrapper = styled.div`
   }
   .btn-container {
     font-size: 1.3rem;
-    visibility: hidden;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+  .show {
+    display: flex;
   }
   .edit-icon {
     margin-right: 0.5rem;
     cursor: pointer;
   }
-
+  .add-button {
+    display: flex;
+  }
+  .add-icon {
+    cursor: pointer;
+  }
   h1,
   h2,
   h3,
@@ -124,9 +133,11 @@ const Wrapper = styled.div`
 
     &:hover {
       border-left: 5px solid var(--primary-500);
+      .btn-container {
+        height: auto;
+      }
     }
   }
-
   .title {
     font-size: 2.441rem;
     width: 100%;
@@ -146,7 +157,13 @@ const Wrapper = styled.div`
   .bullets {
     line-height: 1.7;
     font-size: 1.25rem;
-    font-family: Georgia,sans-serif;
+    font-family: Georgia, sans-serif;
+
+    &:hover {
+      .btn-container {
+        height: auto;
+      }
+    }
   }
 `;
 
