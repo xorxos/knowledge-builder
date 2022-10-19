@@ -268,7 +268,6 @@ const AppProvider = ({ children }) => {
 
     if (state.isEditing) {
       try {
-        console.log(state.article);
         const { data } = await authFetch.patch(
           `/articles/${state.editArticleId}`,
           {
