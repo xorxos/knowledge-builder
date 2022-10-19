@@ -28,7 +28,6 @@ const LargeHeader = ({ text, module, index }) => {
     return (
       <>
         <textarea
-          className="largeHeader"
           placeholder="Type some text for your large header here"
           value={header}
           onChange={(e) => setHeader(e.target.value)}

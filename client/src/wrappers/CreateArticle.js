@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   box-shadow: var(--shadow-2);
-  padding: 4rem 4rem 4rem 3rem;
+  padding: 4rem;
   margin: 0 auto;
   font-family: Georgia, sans-serif;
   max-width: 1000px;
@@ -44,43 +44,23 @@ const Wrapper = styled.div`
     display: flex;
     flex: 1;
   }
-  h2,
-  h3,
   h4,
-  .largeHeader,
-  .smallHeader {
+  h3 {
     font-family: "Universal Sans", sans-serif;
+    margin: 0;
+    text-transform: none;
   }
   h2,
   .title {
+    font-family: "Universal Sans", sans-serif;
     margin-top: 3.75rem;
     text-transform: none;
     &:first-child {
       margin-top: 0;
     }
   }
-  h3,
-  .largeHeader {
-    margin-top: 2.5rem;
-    text-transform: none;
-  }
-  h4,
-  .smallHeader {
-    margin-top: 2.5rem;
-    text-transform: none;
-    margin-bottom: 0.5rem;
-    font-size: 1.25rem;
-    font-weight: 700;
-  }
-  p,
-  .paragraph {
-    margin-top: 0;
-    max-width: 45em;
-    font-size: 1.25rem;
-  }
   figure {
     text-align: center;
-    margin: 1.5rem 0;
     img {
       width: 100%;
       object-fit: cover;
@@ -89,18 +69,10 @@ const Wrapper = styled.div`
   ol,
   ul {
     margin-bottom: 12px;
-    padding-left: 3rem;
+    padding-left: 2rem;
     font-size: 1.25rem;
     line-height: 1.7em;
     margin-top: 0;
-    border-left: 5px solid transparent;
-    li {
-      line-height: 1.7em;
-      cursor: pointer;
-    }
-    &:hover {
-      border-left: 5px solid var(--primary-500);
-    }
   }
   .btn-container {
     font-size: 1.3rem;
@@ -121,23 +93,7 @@ const Wrapper = styled.div`
   .add-icon {
     cursor: pointer;
   }
-  h1,
-  h2,
-  h3,
-  h4,
-  p,
-  figure {
-    border-left: 5px solid transparent;
-    padding-left: 1rem;
-    cursor: pointer;
 
-    &:hover {
-      border-left: 5px solid var(--primary-500);
-      .btn-container {
-        height: auto;
-      }
-    }
-  }
   .title {
     font-size: 2.441rem;
     width: 100%;
@@ -149,20 +105,41 @@ const Wrapper = styled.div`
   .largeHeader {
     font-size: 1.953rem;
     line-height: 1.3;
+    margin-top: 2.5rem;
+    margin-bottom: 1.38rem;
     letter-spacing: var(--letterSpacing);
+    font-family: "Universal Sans", sans-serif;
   }
   .smallHeader {
     margin-bottom: 0;
+    margin-top: 2.5rem;
+    text-transform: none;
+    margin-bottom: 0.5rem;
+    h4 {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+  }
+  .paragraph {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    max-width: 45em;
+    font-size: 1.25rem;
+
+    p {
+      margin: 0;
+      font-size: 1.25rem;
+    }
   }
   .bullets {
     line-height: 1.7;
     font-size: 1.25rem;
     font-family: Georgia, sans-serif;
-
-    &:hover {
-      .btn-container {
-        height: auto;
-      }
+  }
+  .image {
+    margin: 1.5rem 0;
+    figure {
+      margin: 0;
     }
   }
 `;

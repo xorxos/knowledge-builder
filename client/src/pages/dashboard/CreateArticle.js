@@ -38,7 +38,7 @@ const CreateArticle = () => {
                         index={index}
                       >
                         {(provided) => (
-                          <div
+                          <div className={item.moduleType}
                             ref={provided.innerRef}
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}

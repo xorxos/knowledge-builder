@@ -28,7 +28,6 @@ const SmallHeader = ({ text, module, index }) => {
     return (
       <>
         <textarea
-          className="smallHeader"
           placeholder="Type some text for your small header here"
           value={header}
           onChange={(e) => setHeader(e.target.value)}
