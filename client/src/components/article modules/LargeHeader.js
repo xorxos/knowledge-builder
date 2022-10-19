@@ -3,7 +3,7 @@ import { useAppContext } from "../../context/appContext";
 import EditButtons from "./EditButtons";
 import SaveButtons from "./SaveButtons";
 
-const LargeHeader = ({ text, module }) => {
+const LargeHeader = ({ text, module, index }) => {
   const { displayAlert, article, editArticle } = useAppContext();
   const [header, setHeader] = useState(text || "");
   const [isEditingHeader, setIsEditingHeader] = useState(false);
@@ -14,7 +14,7 @@ const LargeHeader = ({ text, module }) => {
       return;
     }
 
-    article.modules[module.position - 1].mainText = header;
+    article.modules[index].mainText = header;
     editArticle({ article });
     setIsEditingHeader((prev) => !prev);
   };

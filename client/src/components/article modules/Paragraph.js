@@ -3,7 +3,7 @@ import { useAppContext } from "../../context/appContext";
 import EditButtons from "./EditButtons";
 import SaveButtons from "./SaveButtons";
 
-const Paragraph = ({ text, module }) => {
+const Paragraph = ({ text, module, index }) => {
   const { displayAlert, article, editArticle } = useAppContext();
   const [paragraph, setParagraph] = useState(text || "");
   const [isEditingParagraph, setIsEditingParagraph] = useState(false);
@@ -14,7 +14,7 @@ const Paragraph = ({ text, module }) => {
       return;
     }
 
-    article.modules[module.position - 1].mainText = paragraph;
+    article.modules[index].mainText = paragraph;
     editArticle({ article });
     setIsEditingParagraph((prev) => !prev);
   };

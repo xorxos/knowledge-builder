@@ -3,7 +3,7 @@ import { useAppContext } from "../../context/appContext";
 import EditButtons from "./EditButtons";
 import SaveButtons from "./SaveButtons";
 
-const Numbers = ({ list, module }) => {
+const Numbers = ({ list, module, index }) => {
   const { displayAlert, article, editArticle } = useAppContext();
 
   const combineList = (list) => {
@@ -33,7 +33,7 @@ const Numbers = ({ list, module }) => {
       return;
     }
     const newArray = numberText.split(String.fromCharCode(10));
-    article.modules[module.position - 1].listText = newArray;
+    article.modules[index].listText = newArray;
     setNumberList(newArray);
     editArticle({ article });
     setIsEditingNumbers((prev) => !prev);
@@ -62,8 +62,8 @@ const Numbers = ({ list, module }) => {
     return (
       <>
         <ol onClick={() => setIsEditingNumbers((prev) => !prev)}>
-          {numberList.map((item, index) => (
-            <li key={index}>{item}</li>
+          {numberList.map((item, itemIndex) => (
+            <li key={itemIndex}>{item}</li>
           ))}
         </ol>
         <EditButtons />

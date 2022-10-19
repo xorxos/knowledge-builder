@@ -3,7 +3,7 @@ import { useAppContext } from "../../context/appContext";
 import EditButtons from "./EditButtons";
 import SaveButtons from "./SaveButtons";
 
-const Bullets = ({ list, module }) => {
+const Bullets = ({ list, module, index }) => {
   const { displayAlert, article, editArticle } = useAppContext();
 
   const combineList = (list) => {
@@ -33,7 +33,7 @@ const Bullets = ({ list, module }) => {
       return;
     }
     const newArray = bulletText.split(String.fromCharCode(10));
-    article.modules[module.position - 1].listText = newArray;
+    article.modules[index].listText = newArray;
     setBulletList(newArray);
     editArticle({ article });
     setIsEditingBullets((prev) => !prev);
@@ -62,8 +62,8 @@ const Bullets = ({ list, module }) => {
     return (
       <>
         <ul onClick={() => setIsEditingBullets((prev) => !prev)}>
-          {bulletList.map((item, index) => (
-            <li key={index}>{item}</li>
+          {bulletList.map((item, itemIndex) => (
+            <li key={itemIndex}>{item}</li>
           ))}
         </ul>
         <EditButtons />

@@ -43,7 +43,7 @@ const CreateArticle = () => {
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
                           >
-                            <ArticleModule module={item} />
+                            <ArticleModule module={item} index={index}/>
                           </div>
                         )}
                       </Draggable>
