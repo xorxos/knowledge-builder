@@ -28,7 +28,6 @@ const Paragraph = ({ text, module, index }) => {
     return (
       <>
         <textarea
-          className="paragraph"
           placeholder="Type some text for your paragraph here"
           value={paragraph}
           onChange={(e) => setParagraph(e.target.value)}

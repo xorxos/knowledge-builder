@@ -18,32 +18,6 @@ const Wrapper = styled.div`
     min-width: 100%;
     max-width: 100%;
   }
-  .save-btn,
-  .cancel-btn {
-    letter-spacing: var(--letterSpacing);
-    cursor: pointer;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
-  }
-  .save-btn {
-    color: var(--green-dark);
-    background: var(--green-light);
-    margin-right: 0.5rem;
-  }
-  .cancel-btn {
-    color: var(--red-dark);
-    background: var(--red-light);
-    margin-right: 0.5rem;
-  }
-  .save-buttons {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    display: flex;
-    flex: 1;
-  }
   h4,
   h3 {
     font-family: "Universal Sans", sans-serif;
@@ -55,6 +29,7 @@ const Wrapper = styled.div`
     font-family: "Universal Sans", sans-serif;
     margin-top: 3.75rem;
     text-transform: none;
+    cursor: pointer;
     &:first-child {
       margin-top: 0;
     }
@@ -74,11 +49,38 @@ const Wrapper = styled.div`
     line-height: 1.7em;
     margin-top: 0;
   }
+  .save-buttons {
+    display: flex;
+    flex: 1;
+    margin: 0.5rem 0;
+  }
   .btn-container {
     font-size: 1.3rem;
     display: none;
     align-items: center;
     justify-content: center;
+  }
+  .save-btn,
+  .cancel-btn {
+    letter-spacing: var(--letterSpacing);
+    cursor: pointer;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    font-family: Georgia, sans-serif;
+    font-size: 1rem;
+  }
+  .save-btn {
+    color: var(--green-dark);
+    background: var(--green-light);
+    margin-right: 0.5rem;
+  }
+  .cancel-btn {
+    color: var(--red-dark);
+    background: var(--red-light);
+    margin-right: 0.5rem;
   }
   .show {
     display: flex;
@@ -101,6 +103,7 @@ const Wrapper = styled.div`
     flex: 1;
     font-family: "Universal Sans", sans-serif;
     line-height: 1.3;
+    letter-spacing: var(--letterSpacing);
   }
   .largeHeader {
     font-size: 1.953rem;
@@ -109,13 +112,27 @@ const Wrapper = styled.div`
     margin-bottom: 1.38rem;
     letter-spacing: var(--letterSpacing);
     font-family: "Universal Sans", sans-serif;
+    textarea {
+      letter-spacing: var(--letterSpacing);
+      font-size: 1.953rem;
+      line-height: 1.3;
+      letter-spacing: var(--letterSpacing);
+      font-family: "Universal Sans", sans-serif;
+    }
   }
   .smallHeader {
     margin-bottom: 0;
     margin-top: 2.5rem;
     text-transform: none;
     margin-bottom: 0.5rem;
+    font-family: "Universal Sans", sans-serif;
     h4 {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+    textarea {
+      font-family: "Universal Sans", sans-serif;
+      letter-spacing: var(--letterSpacing);
       font-size: 1.25rem;
       font-weight: 700;
     }
