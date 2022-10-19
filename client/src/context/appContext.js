@@ -264,8 +264,6 @@ const AppProvider = ({ children }) => {
   };
 
   const editArticle = async ({ article }) => {
-    console.log("before");
-    console.log(article);
     dispatch({ type: EDIT_ARTICLE_BEGIN });
 
     if (state.isEditing) {
@@ -281,15 +279,12 @@ const AppProvider = ({ children }) => {
           }
         );
         const { updatedArticle } = data;
-        console.log("after");
-        console.log(updatedArticle);
         dispatch({
           type: EDIT_ARTICLE_SUCCESS,
           payload: { updatedArticle },
         });
         displayAlert();
       } catch (error) {
-        console.log(error);
         dispatch({
           type: EDIT_ARTICLE_ERROR,
           payload: { msg: error.response.msg },
