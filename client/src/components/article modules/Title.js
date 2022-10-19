@@ -54,7 +54,6 @@ const Title = ({ text }) => {
         <h2 onClick={() => setIsEditingTitle((prevState) => !prevState)}>
           {title}
         </h2>
-        <EditButtons title />
       </>
     );
 };

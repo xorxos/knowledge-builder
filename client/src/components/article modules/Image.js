@@ -7,7 +7,6 @@ const Image = ({ img, caption }) => {
         <img src={img} loading="lazy" alt={caption} />
         <figcaption>{caption}</figcaption>
       </figure>
-      <EditButtons />
     </>
   );
 };

@@ -41,7 +41,6 @@ const LargeHeader = ({ text, module, index }) => {
         <h3 onClick={() => setIsEditingHeader((prevState) => !prevState)}>
           {text}
         </h3>
-        <EditButtons />
       </>
     );
 };

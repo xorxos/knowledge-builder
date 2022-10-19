@@ -39,7 +39,6 @@ const SmallHeader = ({ text, module, index }) => {
     return (
       <>
         <h4 onClick={() => setIsEditingHeader((prev) => !prev)}>{text}</h4>
-        <EditButtons />
       </>
     );
 };

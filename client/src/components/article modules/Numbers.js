@@ -66,7 +66,6 @@ const Numbers = ({ list, module, index }) => {
             <li key={itemIndex}>{item}</li>
           ))}
         </ol>
-        <EditButtons />
       </>
     );
 };

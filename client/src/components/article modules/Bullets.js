@@ -66,7 +66,6 @@ const Bullets = ({ list, module, index }) => {
             <li key={itemIndex}>{item}</li>
           ))}
         </ul>
-        <EditButtons />
       </>
     );
 };

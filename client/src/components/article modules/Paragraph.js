@@ -39,7 +39,6 @@ const Paragraph = ({ text, module, index }) => {
   return (
     <>
       <p onClick={() => setIsEditingParagraph((prev) => !prev)}>{text}</p>
-      <EditButtons />
     </>
   );
 };
