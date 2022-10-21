@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAppContext } from "../../context/appContext";
-import { EditButtons, SaveButtons, AddButton } from "./";
+import { SaveButtons } from "./";
 
 const Title = ({ text }) => {
   const { displayAlert, isEditing, article, editArticle, createArticle } =

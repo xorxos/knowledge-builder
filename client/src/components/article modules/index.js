@@ -7,7 +7,6 @@ import Paragraph from "./Paragraph";
 import LargeHeader from "./LargeHeader";
 import SmallHeader from "./SmallHeader";
 import Title from "./Title";
-import EditButtons from "./EditButtons";
 import ArticleModule from "./ArticleModule";
 import SaveButtons from "./SaveButtons";
 import AddButton from "./AddButton";
@@ -22,7 +21,6 @@ export {
   Title,
   LargeHeader,
   SmallHeader,
-  EditButtons,
   ArticleModule,
   SaveButtons,
   AddButton,

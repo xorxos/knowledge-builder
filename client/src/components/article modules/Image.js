@@ -1,6 +1,10 @@
-import EditButtons from "./EditButtons";
 
-const Image = ({ img, caption }) => {
+const Image = ({ img, caption, noEdit }) => {
+  const handleClick = () => {
+    // if (noEdit) return;
+    // setIsEditingBullets((prev) => !prev);
+  };
+
   return (
     <>
       <figure>

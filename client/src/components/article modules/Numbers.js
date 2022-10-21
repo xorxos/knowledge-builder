@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useAppContext } from "../../context/appContext";
-import EditButtons from "./EditButtons";
 import SaveButtons from "./SaveButtons";
 
-const Numbers = ({ list, module, index }) => {
+const Numbers = ({ list, module, index, noEdit }) => {
   const { displayAlert, article, editArticle } = useAppContext();
 
   const combineList = (list) => {
@@ -45,6 +44,11 @@ const Numbers = ({ list, module, index }) => {
     setIsEditingNumbers((prev) => !prev);
   };
 
+  const handleClick = () => {
+    if (noEdit) return;
+    setIsEditingNumbers((prev) => !prev);
+  };
+
   if (isEditingNumbers)
     return (
       <>
@@ -61,7 +65,7 @@ const Numbers = ({ list, module, index }) => {
   else
     return (
       <>
-        <ol onClick={() => setIsEditingNumbers((prev) => !prev)}>
+        <ol onClick={handleClick}>
           {numberList.map((item, itemIndex) => (
             <li key={itemIndex}>{item}</li>
           ))}

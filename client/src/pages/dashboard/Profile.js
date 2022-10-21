@@ -88,7 +88,6 @@ const Profile = () => {
   return (
     <Wrapper>
       <h3>Your Profile</h3>
-          {showAlert && <Alert />}
       <form className="form" onSubmit={handleSubmit}>
         <h4>
           personal info{" "}

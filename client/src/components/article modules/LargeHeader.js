@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useAppContext } from "../../context/appContext";
-import EditButtons from "./EditButtons";
 import SaveButtons from "./SaveButtons";
 
-const LargeHeader = ({ text, module, index }) => {
+const LargeHeader = ({ text, module, index, noEdit }) => {
   const { displayAlert, article, editArticle } = useAppContext();
   const [header, setHeader] = useState(text || "");
   const [isEditingHeader, setIsEditingHeader] = useState(false);
@@ -23,6 +22,11 @@ const LargeHeader = ({ text, module, index }) => {
     setHeader(module.mainText);
     setIsEditingHeader((prev) => !prev);
   };
+  
+  const handleClick = () => {
+    if (noEdit) return;
+    setIsEditingHeader((prev) => !prev);
+  };
 
   if (isEditingHeader)
     return (
@@ -38,7 +42,7 @@ const LargeHeader = ({ text, module, index }) => {
   else
     return (
       <>
-        <h3 onClick={() => setIsEditingHeader((prevState) => !prevState)}>
+        <h3 onClick={handleClick}>
           {text}
         </h3>
       </>

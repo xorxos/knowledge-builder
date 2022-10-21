@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Wrapper from "../../wrappers/SharedLayout";
-import { Navbar, BigSidebar, SmallSidebar } from "../../components/";
+import { Navbar, BigSidebar, SmallSidebar, AddItemsList } from "../../components/";
 import { useAppContext } from "../../context/appContext";
 import { Alert } from "../../components/";
 
@@ -12,11 +12,15 @@ const SharedLayout = () => {
       <main className="dashboard">
         <SmallSidebar />
         <BigSidebar />
-        <div>
+        <div className="relative">
           <Navbar />
           <div className="dashboard-page">
             {showAlert && <Alert fixed />}
             <Outlet />
+          </div>
+
+          <div className="add-item-sidebar">
+            <AddItemsList /> 
           </div>
         </div>
       </main>

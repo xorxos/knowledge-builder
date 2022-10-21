@@ -12,8 +12,10 @@ import SearchContainer from "./SearchContainer";
 import Loading from "./Loading";
 import SearchBar from "./SearchBar";
 import Tags from "./Tags";
+import AddItemsList from "./AddItemsList";
 
 export {
+  AddItemsList,
   FormRow,
   Logo,
   Alert,

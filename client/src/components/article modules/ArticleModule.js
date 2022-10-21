@@ -8,31 +8,31 @@ import {
   Title,
 } from ".";
 
-const ArticleModule = ({ module, index }) => {
+const ArticleModule = ({ module, index, noEdit }) => {
   switch (module.moduleType) {
     case "title":
       return <Title text={module.title} />;
 
     case "largeHeader":
-      return <LargeHeader text={module.mainText} module={module} index={index} />;
+      return <LargeHeader noEdit={noEdit} text={module.mainText} module={module} index={index} />;
 
     case "smallHeader":
-      return <SmallHeader text={module.mainText} module={module} index={index} />;
+      return <SmallHeader noEdit={noEdit} text={module.mainText} module={module} index={index} />;
 
     case "paragraph":
-      return <Paragraph text={module.mainText} module={module} index={index} />;
+      return <Paragraph noEdit={noEdit} text={module.mainText} module={module} index={index} />;
 
     case "numberedList":
-      return <Numbers list={module.listText} module={module} index={index} />;
+      return <Numbers noEdit={noEdit} list={module.listText} module={module} index={index} />;
 
     case "bulletList":
-      return <Bullets list={module.listText} module={module} index={index} />;
+      return <Bullets noEdit={noEdit} list={module.listText} module={module} index={index} />;
 
     case "codeBlock":
       return;
 
     case "image":
-      return <Image img={module.imagePath} caption={module.imageCaption} index={index} />;
+      return <Image noEdit={noEdit} img={module.imagePath} caption={module.imageCaption} index={index} />;
 
     default:
       return;

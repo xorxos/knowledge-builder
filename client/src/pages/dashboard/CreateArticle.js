@@ -2,6 +2,7 @@ import Wrapper from "../../wrappers/CreateArticle";
 import { ArticleModule } from "../../components/article modules";
 import { useAppContext } from "../../context/appContext";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { AddItemsList } from "../../components";
 
 const CreateArticle = () => {
   const { isEditing, article, editArticle } = useAppContext();
@@ -38,12 +39,13 @@ const CreateArticle = () => {
                         index={index}
                       >
                         {(provided) => (
-                          <div className={item.moduleType}
+                          <div
+                            className={item.moduleType}
                             ref={provided.innerRef}
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
                           >
-                            <ArticleModule module={item} index={index}/>
+                            <ArticleModule module={item} index={index} />
                           </div>
                         )}
                       </Draggable>

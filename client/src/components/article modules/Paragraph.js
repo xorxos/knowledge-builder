@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useAppContext } from "../../context/appContext";
-import EditButtons from "./EditButtons";
 import SaveButtons from "./SaveButtons";
 
-const Paragraph = ({ text, module, index }) => {
+const Paragraph = ({ text, module, index, noEdit }) => {
   const { displayAlert, article, editArticle } = useAppContext();
   const [paragraph, setParagraph] = useState(text || "");
   const [isEditingParagraph, setIsEditingParagraph] = useState(false);
@@ -24,6 +23,11 @@ const Paragraph = ({ text, module, index }) => {
     setIsEditingParagraph((prev) => !prev);
   };
 
+  const handleClick = () => {
+    if (noEdit) return;
+    setIsEditingParagraph((prev) => !prev);
+  };
+
   if (isEditingParagraph)
     return (
       <>
@@ -38,7 +42,7 @@ const Paragraph = ({ text, module, index }) => {
 
   return (
     <>
-      <p onClick={() => setIsEditingParagraph((prev) => !prev)}>{text}</p>
+      <p onClick={handleClick}>{text}</p>
     </>
   );
 };

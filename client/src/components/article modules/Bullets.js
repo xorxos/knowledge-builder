@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useAppContext } from "../../context/appContext";
-import EditButtons from "./EditButtons";
 import SaveButtons from "./SaveButtons";
 
-const Bullets = ({ list, module, index }) => {
+const Bullets = ({ list, module, index, noEdit }) => {
   const { displayAlert, article, editArticle } = useAppContext();
 
   const combineList = (list) => {
@@ -45,6 +44,11 @@ const Bullets = ({ list, module, index }) => {
     setIsEditingBullets((prev) => !prev);
   };
 
+  const handleClick = () => {
+    if (noEdit) return;
+    setIsEditingBullets((prev) => !prev);
+  };
+
   if (isEditingBullets)
     return (
       <>
@@ -61,7 +65,7 @@ const Bullets = ({ list, module, index }) => {
   else
     return (
       <>
-        <ul onClick={() => setIsEditingBullets((prev) => !prev)}>
+        <ul onClick={handleClick}>
           {bulletList.map((item, itemIndex) => (
             <li key={itemIndex}>{item}</li>
           ))}
