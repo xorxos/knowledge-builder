@@ -50,4 +50,6 @@ export const CLEAR_FILTERS = "CLEAR_FILTERS";
 
 export const TOGGLE_SIDEBAR = "TOGGLE_SIDEBAR";
 
+export const TOGGLE_ADD_ITEMS = "TOGGLE_ADD_ITEMS";
+
 export const SET_EDIT_ARTICLE = "SET_EDIT_ARTICLE";

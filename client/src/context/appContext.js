@@ -38,6 +38,7 @@ import {
   CREATE_ARTICLE_BEGIN,
   CREATE_ARTICLE_SUCCESS,
   CREATE_ARTICLE_ERROR,
+  TOGGLE_ADD_ITEMS,
 } from "./actions";
 
 const token = localStorage.getItem("token");
@@ -51,6 +52,7 @@ const initialState = {
   user: user ? JSON.parse(user) : null,
   token: token,
   showSidebar: false,
+  showAddItems: false,
   isEditing: false,
   editArticleId: "",
   article: {},
@@ -376,6 +378,10 @@ const AppProvider = ({ children }) => {
     dispatch({ type: SET_EDIT_ARTICLE, payload: { id } });
   };
 
+  const toggleAddItems = () => {
+    dispatch({ type: TOGGLE_ADD_ITEMS });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -401,6 +407,7 @@ const AppProvider = ({ children }) => {
         setEditArticle,
         editArticle,
         createArticle,
+        toggleAddItems,
       }}
     >
       {children}

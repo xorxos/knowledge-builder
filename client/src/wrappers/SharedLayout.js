@@ -20,6 +20,7 @@ const Wrapper = styled.section`
     right: 0;
     box-shadow: -1px 0px 0px 0px rgb(0 0 0 / 10%);
   }
+  
   @media (min-width: 992px) {
     .dashboard {
       grid-template-columns: auto 1fr;

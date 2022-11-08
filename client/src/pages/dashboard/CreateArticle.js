@@ -1,11 +1,12 @@
 import Wrapper from "../../wrappers/CreateArticle";
 import { ArticleModule } from "../../components/article modules";
 import { useAppContext } from "../../context/appContext";
+import { FaPlusCircle, FaTimesCircle } from "react-icons/fa";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import { AddItemsList } from "../../components";
 
 const CreateArticle = () => {
-  const { isEditing, article, editArticle } = useAppContext();
+  const { isEditing, article, editArticle, showAddItems, toggleAddItems } =
+    useAppContext();
 
   const handleDragEnd = (result) => {
     if (!result.destination) return;
@@ -34,8 +35,8 @@ const CreateArticle = () => {
                   {article.modules.length > 0 &&
                     article.modules.map((item, index) => (
                       <Draggable
-                        key={item._id}
-                        draggableId={item._id.toString()}
+                        key={index}
+                        draggableId={index.toString()}
                         index={index}
                       >
                         {(provided) => (
@@ -55,6 +56,13 @@ const CreateArticle = () => {
               )}
             </Droppable>
           </DragDropContext>
+          <div className="add-icon">
+            {showAddItems ? (
+              <FaTimesCircle onClick={toggleAddItems} />
+            ) : (
+              <FaPlusCircle onClick={toggleAddItems} />
+            )}
+          </div>
         </div>
       </Wrapper>
     );

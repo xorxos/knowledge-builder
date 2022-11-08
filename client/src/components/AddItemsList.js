@@ -1,69 +1,84 @@
 import { useAppContext } from "../context/appContext";
 import Wrapper from "../wrappers/AddItemsList";
 import { ArticleModule } from "./article modules";
-import { Draggable, Droppable } from "react-beautiful-dnd";
 
 const AddItemsList = () => {
-  const { articleModuleOptions } = useAppContext();
+  const { articleModuleOptions, editArticle, article } = useAppContext();
+
+  const handleClick = ({ item, mainText, listText }) => {
+    const newModule = {
+      moduleType: item,
+      mainText,
+      listText,
+    };
+    article.modules.push(newModule);
+    editArticle({ article });
+  };
 
   const returnModule = (item, index) => {
     if (item === "largeHeader")
       return (
-        <ArticleModule
-          noEdit
+        <div
+          onClick={() => handleClick({ item, mainText: "Large heading" })}
           key={index}
-          module={{ moduleType: item, mainText: "Large heading" }}
-        />
+        >
+          <ArticleModule
+            noEdit
+            module={{ moduleType: item, mainText: "Large heading" }}
+          />
+        </div>
       );
     if (item === "smallHeader")
       return (
-        <ArticleModule
-          noEdit
+        <div
+          onClick={() => handleClick({ item, mainText: "Small heading" })}
           key={index}
-          module={{ moduleType: item, mainText: "Small heading" }}
-        />
+        >
+          <ArticleModule
+            noEdit
+            module={{ moduleType: item, mainText: "Small heading" }}
+          />
+        </div>
       );
     if (item === "paragraph")
       return (
-        <ArticleModule
-          noEdit
+        <div
+          onClick={() => handleClick({ item, mainText: "Normal text" })}
           key={index}
-          module={{ moduleType: item, mainText: "Normal text" }}
-        />
+        >
+          <ArticleModule
+            noEdit
+            key={index}
+            module={{ moduleType: item, mainText: "Normal text" }}
+          />
+        </div>
       );
     if (item === "bulletList")
       return (
-        <ArticleModule
-          noEdit
+        <div
+          onClick={() => handleClick({ item, listText: ["Bullets"] })}
           key={index}
-          module={{ moduleType: item, listText: ["Bullets"] }}
-        />
+        >
+          <ArticleModule
+            noEdit
+            key={index}
+            module={{ moduleType: item, listText: ["Bullets"] }}
+          />
+        </div>
       );
     if (item === "numberedList")
       return (
-        <ArticleModule
-          noEdit
+        <div
+          onClick={() => handleClick({ item, listText: ["Numbers"] })}
           key={index}
-          module={{ moduleType: item, listText: ["Numbers"] }}
-        />
+        >
+          <ArticleModule
+            noEdit
+            key={index}
+            module={{ moduleType: item, listText: ["Numbers"] }}
+          />
+        </div>
       );
-    if (item === "image")
-      return (
-        <ArticleModule
-          noEdit
-          key={index}
-          module={{
-            moduleType: item,
-            imagePath:
-              "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png",
-            imageCaption: "An image",
-          }}
-        />
-      );
-  };
-
-  const onDragEnd = (result) => {
-    console.log(result);
   };
 
   return (

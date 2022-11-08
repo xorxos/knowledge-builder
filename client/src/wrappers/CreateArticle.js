@@ -159,6 +159,11 @@ const Wrapper = styled.div`
       margin: 0;
     }
   }
+  .add-icon {
+    align-self: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
 `;
 
 export default Wrapper;

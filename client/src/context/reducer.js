@@ -34,6 +34,7 @@ import {
   CREATE_ARTICLE_BEGIN,
   CREATE_ARTICLE_SUCCESS,
   CREATE_ARTICLE_ERROR,
+  TOGGLE_ADD_ITEMS,
 } from "./actions";
 
 import { initialState } from "./appContext";
@@ -334,6 +335,12 @@ const reducer = (state, action) => {
         editArticleId: article._id,
         article: article,
         title: article.title,
+      };
+
+    case TOGGLE_ADD_ITEMS:
+      return {
+        ...state,
+        showAddItems: !state.showAddItems,
       };
 
     default:
