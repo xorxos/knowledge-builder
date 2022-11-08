@@ -22,10 +22,15 @@ const LargeHeader = ({ text, module, index, noEdit }) => {
     setHeader(module.mainText);
     setIsEditingHeader((prev) => !prev);
   };
-  
+
   const handleClick = () => {
     if (noEdit) return;
     setIsEditingHeader((prev) => !prev);
+  };
+
+  const handleDelete = () => {
+    article.modules.splice(index, 1);
+    editArticle({ article });
   };
 
   if (isEditingHeader)
@@ -36,15 +41,17 @@ const LargeHeader = ({ text, module, index, noEdit }) => {
           value={header}
           onChange={(e) => setHeader(e.target.value)}
         />
-        <SaveButtons save={handleSave} cancel={handleCancel} />
+        <SaveButtons
+          save={handleSave}
+          cancel={handleCancel}
+          deleteModule={handleDelete}
+        />
       </>
     );
   else
     return (
       <>
-        <h3 onClick={handleClick}>
-          {text}
-        </h3>
+        <h3 onClick={handleClick}>{text}</h3>
       </>
     );
 };

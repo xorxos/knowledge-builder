@@ -49,6 +49,11 @@ const Numbers = ({ list, module, index, noEdit }) => {
     setIsEditingNumbers((prev) => !prev);
   };
 
+  const handleDelete = () => {
+    article.modules.splice(index, 1);
+    editArticle({ article });
+  };
+
   if (isEditingNumbers)
     return (
       <>
@@ -59,7 +64,11 @@ const Numbers = ({ list, module, index, noEdit }) => {
           value={numberText}
           onChange={(e) => setNumberText(e.target.value)}
         />
-        <SaveButtons save={handleSave} cancel={handleCancel} />
+        <SaveButtons
+          save={handleSave}
+          cancel={handleCancel}
+          deleteModule={handleDelete}
+        />
       </>
     );
   else

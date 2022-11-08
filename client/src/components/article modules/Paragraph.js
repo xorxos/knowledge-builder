@@ -28,6 +28,11 @@ const Paragraph = ({ text, module, index, noEdit }) => {
     setIsEditingParagraph((prev) => !prev);
   };
 
+  const handleDelete = () => {
+    article.modules.splice(index, 1);
+    editArticle({ article });
+  };
+
   if (isEditingParagraph)
     return (
       <>
@@ -36,7 +41,7 @@ const Paragraph = ({ text, module, index, noEdit }) => {
           value={paragraph}
           onChange={(e) => setParagraph(e.target.value)}
         />
-        <SaveButtons save={handleSave} cancel={handleCancel} />
+        <SaveButtons save={handleSave} cancel={handleCancel} deleteModule={handleDelete} />
       </>
     );
 

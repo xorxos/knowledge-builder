@@ -49,6 +49,11 @@ const Bullets = ({ list, module, index, noEdit }) => {
     setIsEditingBullets((prev) => !prev);
   };
 
+  const handleDelete = () => {
+    article.modules.splice(index, 1);
+    editArticle({ article });
+  };
+
   if (isEditingBullets)
     return (
       <>
@@ -59,7 +64,7 @@ const Bullets = ({ list, module, index, noEdit }) => {
           value={bulletText}
           onChange={(e) => setBulletText(e.target.value)}
         />
-        <SaveButtons save={handleSave} cancel={handleCancel} />
+        <SaveButtons save={handleSave} cancel={handleCancel} deleteModule={handleDelete} />
       </>
     );
   else

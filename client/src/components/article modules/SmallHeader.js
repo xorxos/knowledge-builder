@@ -28,6 +28,11 @@ const SmallHeader = ({ text, module, index, noEdit }) => {
     setIsEditingHeader((prev) => !prev);
   };
 
+  const handleDelete = () => {
+    article.modules.splice(index, 1);
+    editArticle({ article });
+  };
+
   if (isEditingHeader)
     return (
       <>
@@ -36,7 +41,11 @@ const SmallHeader = ({ text, module, index, noEdit }) => {
           value={header}
           onChange={(e) => setHeader(e.target.value)}
         />
-        <SaveButtons save={handleSave} cancel={handleCancel} />
+        <SaveButtons
+          save={handleSave}
+          cancel={handleCancel}
+          deleteModule={handleDelete}
+        />
       </>
     );
   else

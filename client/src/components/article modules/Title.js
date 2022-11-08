@@ -45,7 +45,7 @@ const Title = ({ text }) => {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <SaveButtons save={handleSave} cancel={handleCancel} />
+        <SaveButtons save={handleSave} cancel={handleCancel} isTitle />
       </>
     );
   else
