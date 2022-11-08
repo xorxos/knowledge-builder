@@ -206,6 +206,9 @@ const reducer = (state, action) => {
       return {
         ...state,
         isEditing: false,
+        article: {},
+        editArticleId: "",
+        showAddItems: false,
       };
 
     case CLEAR_FILTERS:
