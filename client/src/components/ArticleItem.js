@@ -26,7 +26,7 @@ const ArticleItem = ({ _id, updatedAt, title, status, tags, flagged }) => {
           </div>
         )}
       </header>
-      {tags && <Tags tags={tags} />}
+      {tags && <Tags tags={tags} id={_id} />}
       <div className="content">
         <footer>
           <div className="actions">

@@ -35,6 +35,7 @@ import {
   CREATE_ARTICLE_SUCCESS,
   CREATE_ARTICLE_ERROR,
   TOGGLE_ADD_ITEMS,
+  TOGGLE_ADD_TAG,
 } from "./actions";
 
 import { initialState } from "./appContext";
@@ -344,6 +345,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         showAddItems: !state.showAddItems,
+      };
+
+    case TOGGLE_ADD_TAG:
+      return {
+        ...state,
+        showAddTag: !state.showAddTag,
       };
 
     default:

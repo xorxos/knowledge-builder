@@ -13,8 +13,10 @@ import Loading from "./Loading";
 import SearchBar from "./SearchBar";
 import Tags from "./Tags";
 import AddItemsList from "./AddItemsList";
+import AddTag from "./AddTagInput";
 
 export {
+  AddTag,
   AddItemsList,
   FormRow,
   Logo,

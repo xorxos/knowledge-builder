@@ -39,6 +39,7 @@ import {
   CREATE_ARTICLE_SUCCESS,
   CREATE_ARTICLE_ERROR,
   TOGGLE_ADD_ITEMS,
+  TOGGLE_ADD_TAG,
 } from "./actions";
 
 const token = localStorage.getItem("token");
@@ -53,6 +54,7 @@ const initialState = {
   token: token,
   showSidebar: false,
   showAddItems: false,
+  showAddTag: false,
   isEditing: false,
   editArticleId: "",
   article: {},
@@ -382,6 +384,10 @@ const AppProvider = ({ children }) => {
     dispatch({ type: TOGGLE_ADD_ITEMS });
   };
 
+  const toggleAddTag = () => {
+    dispatch({ type: TOGGLE_ADD_TAG });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -408,6 +414,7 @@ const AppProvider = ({ children }) => {
         editArticle,
         createArticle,
         toggleAddItems,
+        toggleAddTag,
       }}
     >
       {children}

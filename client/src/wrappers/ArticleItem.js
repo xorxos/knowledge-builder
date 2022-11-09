@@ -88,6 +88,28 @@ const Wrapper = styled.article`
     padding: 0 0.5rem;
     cursor: pointer;
   }
+  .add-tag {
+    align-self: center;
+    margin-left: 0.5rem;
+    cursor: pointer;
+  }
+  .add-tag-container {
+    margin-left: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .tag-button {
+    cursor: pointer;
+    align-self: center;
+    margin-left: 0.5rem;
+  }
+  .green {
+    color: var(--green-dark);
+  }
+  .red {
+    color: var(--red-dark);
+  }
   .edit-btn,
   .delete-btn {
     letter-spacing: var(--letterSpacing);

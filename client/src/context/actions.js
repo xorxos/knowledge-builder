@@ -52,4 +52,6 @@ export const TOGGLE_SIDEBAR = "TOGGLE_SIDEBAR";
 
 export const TOGGLE_ADD_ITEMS = "TOGGLE_ADD_ITEMS";
 
+export const TOGGLE_ADD_TAG = "TOGGLE_ADD_TAG";
+
 export const SET_EDIT_ARTICLE = "SET_EDIT_ARTICLE";
