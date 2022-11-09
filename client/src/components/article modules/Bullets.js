@@ -5,6 +5,7 @@ import SaveButtons from "./SaveButtons";
 const Bullets = ({ list, module, index, noEdit }) => {
   const { displayAlert, article, editArticle } = useAppContext();
 
+  // combine list items and add new line at the end of each
   const combineList = (list) => {
     if (list) {
       const length = list.length;
@@ -31,9 +32,12 @@ const Bullets = ({ list, module, index, noEdit }) => {
       displayAlert("You must add at least one bullet point!", "danger");
       return;
     }
+
+    // split by each new line and create array for bullet items
     const newArray = bulletText.split(String.fromCharCode(10));
     article.modules[index].listText = newArray;
     setBulletList(newArray);
+    
     editArticle({ article });
     setIsEditingBullets((prev) => !prev);
   };

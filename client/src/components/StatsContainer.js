@@ -5,7 +5,6 @@ import {
   FaSuitcaseRolling,
   FaCalendarCheck,
   FaBug,
-  FaCheck,
 } from "react-icons/fa";
 
 const StatsContainer = () => {

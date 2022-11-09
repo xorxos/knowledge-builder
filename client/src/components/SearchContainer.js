@@ -3,7 +3,7 @@ import { useAppContext } from "../context/appContext";
 import Wrapper from "../wrappers/SearchContainer";
 
 const SearchContainer = () => {
-  const { isLoading, handleChange } = useAppContext();
+  const { handleChange } = useAppContext();
 
   const handleSearch = (e) => {
     handleChange({ name: e.target.name, value: e.target.value });

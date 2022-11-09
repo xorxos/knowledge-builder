@@ -19,7 +19,11 @@ const Tags = ({ tags, id }) => {
       return;
     }
 
+    // get rid of all empty spaces
     let newTags = tagString.replaceAll(" ", "");
+
+    // check if comma is the last character
+    // if so, then remove it
     const lastChar = newTags.slice(-1);
     if (lastChar === ",") {
       newTags = newTags.replace(/,$/, "")
