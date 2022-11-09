@@ -28,12 +28,6 @@ const ArticleModule = ({ module, index, noEdit }) => {
     case "bulletList":
       return <Bullets noEdit={noEdit} list={module.listText} module={module} index={index} />;
 
-    case "codeBlock":
-      return;
-
-    case "image":
-      return <Image noEdit={noEdit} img={module.imagePath} caption={module.imageCaption} index={index} />;
-
     default:
       return;
   }
