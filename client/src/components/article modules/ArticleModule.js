@@ -2,7 +2,6 @@ import {
   LargeHeader,
   Paragraph,
   SmallHeader,
-  Image,
   Numbers,
   Bullets,
   Title,
