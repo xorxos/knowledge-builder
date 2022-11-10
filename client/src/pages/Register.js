@@ -85,6 +85,7 @@ const Register = () => {
         clearAlert();
       }, 3000);
     }
+    // eslint-disable-next-line
   }, [user, navigate]);
 
   useScrollToAlert();

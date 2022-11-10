@@ -14,6 +14,7 @@ const AllArticles = () => {
 
   useEffect(() => {
     getArticles();
+    // eslint-disable-next-line
   }, [searchStatus, searchFlag, search, searchType]);
 
   return (

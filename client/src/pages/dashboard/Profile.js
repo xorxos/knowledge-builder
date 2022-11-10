@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { FormRow, Alert } from "../../components";
+import { FormRow } from "../../components";
 import { useAppContext, useScrollToAlert } from "../../context/appContext";
 import Wrapper from "../../wrappers/DashboardProfile";
 
 const Profile = () => {
-  const { user, showAlert, displayAlert, updateUser, isLoading } =
-    useAppContext();
+  const { user, displayAlert, updateUser, isLoading } = useAppContext();
   const [firstName, setFirstName] = useState(user?.firstName);
   const [lastName, setLastName] = useState(user?.lastName);
   const [email, setEmail] = useState(user?.email);
@@ -81,7 +80,6 @@ const Profile = () => {
       cancelStateChanges();
     }
   };
-
 
   useScrollToAlert();
 
